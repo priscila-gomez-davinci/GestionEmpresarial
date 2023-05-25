@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="fuente_home">#808080</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="fondo_pig">#FF4C90D7</color>
+    <color name="fondo_gris">#F0EFF4</color>
+    <color name="negro">#000000</color>
+    <color name="notificacion">#ffff00</color>
+    <color name="card_color">#96BF58</color>
+    <color name="grey_background">#AEB5A3</color>
 </resources>

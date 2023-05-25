@@ -13,6 +13,24 @@
         android:theme="@style/Theme.GestionEmpresarial"
         tools:targetApi="31">
         <activity
+            android:name=".views.LTSplash"
+            android:exported="false" />
+        <activity
+            android:name=".views.EmployeeDetail"
+            android:exported="false" />
+        <activity
+            android:name=".views.Register"
+            android:exported="false" />
+        <activity
+            android:name=".views.MyProfile"
+            android:exported="false" />
+        <activity
+            android:name=".views.EmployeesList"
+            android:exported="false" />
+        <activity
+            android:name=".views.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

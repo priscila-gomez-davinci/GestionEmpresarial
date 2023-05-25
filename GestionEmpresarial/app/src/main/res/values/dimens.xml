@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="txtMarginTop">15dp</dimen>
+    <dimen name="marginLayout1">2dp</dimen>
+    <dimen name="marginLayout">10dp</dimen>
+    <dimen name="marginLayout2">20dp</dimen>
+    <dimen name="marginLayout3">30dp</dimen>
+    <dimen name="marginLayout4">40dp</dimen>
+    <dimen name="marginLayout5">1dp</dimen>
+    <dimen name="marginLayout6">2dp</dimen>
+    <dimen name="marginLayout7">3dp</dimen>
+    <dimen name="marginLayout8">5dp</dimen>
+    <dimen name="marginLayout9">25dp</dimen>
+    <dimen name="marginLayout10">45dp</dimen>
+    <dimen name="marginLayout11">8dp</dimen>
+
+    <dimen name="padding_s">1dp</dimen>
+    <dimen name="padding_m">2dp</dimen>
+    <dimen name="padding_l">3dp</dimen>
+    <dimen name="padding_xl">5dp</dimen>
+    <dimen name="padding_xxl">10sp</dimen>
+    <dimen name="padding_xxxl">30dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+
+    <dimen name="txt_xxxxs">11dp</dimen>
+    <dimen name="txt_xxxs">10sp</dimen>
+    <dimen name="txt_xxs">12.5sp</dimen>
+    <dimen name="txt_xs">14sp</dimen>
+    <dimen name="txt_s">16sp</dimen>
+    <dimen name="txt_m">18sp</dimen>
+    <dimen name="txt_l">20sp</dimen>
+    <dimen name="txt_xl">22sp</dimen>
+    <dimen name="txt_xxl">24sp</dimen>
+    <dimen name="txt_xxxl">26sp</dimen>
+</resources>
