@@ -1,4 +1,4 @@
-package com.example.gestionempresarial.datamodel;
+package com.example.gestionempresarial.pojos;
 
 public class Address {
     public String street;

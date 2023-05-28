@@ -1,4 +1,4 @@
-package com.example.gestionempresarial.datamodel;
+package com.example.gestionempresarial.pojos;
 
 import java.util.List;
 

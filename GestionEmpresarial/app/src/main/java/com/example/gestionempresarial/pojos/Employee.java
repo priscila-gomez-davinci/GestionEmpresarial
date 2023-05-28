@@ -1,4 +1,4 @@
-package com.example.gestionempresarial.datamodel;
+package com.example.gestionempresarial.pojos;
 
 public class Employee {
     public String name;
@@ -9,8 +9,6 @@ public class Employee {
     public String user;
     public String password;
     public String fileNumber;
-    public String workplace;
-
     public Boolean isActive;
 
     public Boolean getActive() {
@@ -83,13 +81,5 @@ public class Employee {
 
     public void setFileNumber(String fileNumber) {
         this.fileNumber = fileNumber;
-    }
-
-    public String getWorkplace() {
-        return workplace;
-    }
-
-    public void setWorkplace(String workplace) {
-        this.workplace = workplace;
     }
 }

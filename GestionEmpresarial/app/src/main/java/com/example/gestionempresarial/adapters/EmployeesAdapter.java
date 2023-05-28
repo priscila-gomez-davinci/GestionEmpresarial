@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.databases.DbCreator;
-import com.example.gestionempresarial.datamodel.Employee;
+import com.example.gestionempresarial.pojos.Employee;
 
 import java.util.List;
 
