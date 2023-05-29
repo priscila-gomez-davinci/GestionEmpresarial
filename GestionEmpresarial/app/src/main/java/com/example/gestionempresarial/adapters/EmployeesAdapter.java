@@ -15,12 +15,12 @@ import java.util.List;
 public class EmployeesAdapter extends BaseAdapter {
 
     LayoutInflater mLayoutInflater;
-    DbCreator ordenInspeccionDB;
+    DbCreator database;
 
     public List<Employee> empleados;
 
     public EmployeesAdapter(Context context) {
-        ordenInspeccionDB = new DbCreator(context);
+        database = new DbCreator(context);
         mLayoutInflater = LayoutInflater.from(context);
     }
 

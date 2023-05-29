@@ -5,11 +5,52 @@ public class Employee {
     public String lastname;
     public String email;
     public String telephone;
-    public Address address;
-    public String user;
-    public String password;
     public String fileNumber;
     public Boolean isActive;
+    public String street;
+    public String number;
+    public String city;
+    public String country;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getPostCode() {
+        return country;
+    }
+
+    public void setPostCode(String postCode) {
+        this.country = postCode;
+    }
 
     public Boolean getActive() {
         return isActive;
@@ -49,30 +90,6 @@ public class Employee {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFileNumber() {
