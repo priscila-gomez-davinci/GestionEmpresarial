@@ -28,8 +28,13 @@ public class DbCreator extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String queryArtefactoCreate = createUserTable();
-        sqLiteDatabase.execSQL(queryArtefactoCreate);
+        String queryToCreateUserTable = createUserTable();
+        sqLiteDatabase.execSQL(queryToCreateUserTable);
+
+        String queryToCreateEmployeesTable = createTableEmployees();
+        sqLiteDatabase.execSQL(queryToCreateEmployeesTable);
+
+
     }
 
     @Override
@@ -50,5 +55,106 @@ public class DbCreator extends SQLiteOpenHelper {
 
         return sb.toString();
     }
+
+    private String createTableEmployees(){
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("CREATE TABLE employees (");
+        queryBuilder.append("name VARCHAR, ");
+        queryBuilder.append("lastname VARCHAR, ");
+        queryBuilder.append("email VARCHAR, ");
+        queryBuilder.append("telephone VARCHAR, ");
+        queryBuilder.append("fileNumber VARCHAR, ");
+        queryBuilder.append("isActive INTEGER, ");
+        queryBuilder.append("street VARCHAR, ");
+        queryBuilder.append("number VARCHAR, ");
+        queryBuilder.append("city VARCHAR, ");
+        queryBuilder.append("country VARCHAR");
+        queryBuilder.append(");");
+
+        return queryBuilder.toString();
+    }
+
+
+    private String queryInsertAuth(){
+        StringBuilder insertQueryBuilder = new StringBuilder();
+        insertQueryBuilder.append("INSERT INTO auth (name, lastname, user, password) VALUES (");
+        insertQueryBuilder.append("'John', ");
+        insertQueryBuilder.append("'Doe', ");
+        insertQueryBuilder.append("'johndoe', ");
+        insertQueryBuilder.append("'password123'");
+        insertQueryBuilder.append(");");
+
+        return insertQueryBuilder.toString();
+
+    }
+    private String queryUpdateAuth(){
+        StringBuilder updateQueryBuilder = new StringBuilder();
+        updateQueryBuilder.append("UPDATE auth SET ");
+        updateQueryBuilder.append("name = 'Jane', ");
+        updateQueryBuilder.append("lastname = 'Smith', ");
+        updateQueryBuilder.append("user = 'janesmith', ");
+        updateQueryBuilder.append("password = 'newpassword'");
+        updateQueryBuilder.append(" WHERE id = 1;");
+
+        return updateQueryBuilder.toString();
+    }
+
+    private String queryDeleteAuth(){
+        StringBuilder deleteQueryBuilder = new StringBuilder();
+        deleteQueryBuilder.append("DELETE FROM auth WHERE id = 1;");
+
+        return deleteQueryBuilder.toString();
+    }
+
+
+    private String queryInsertEmployee(){
+        StringBuilder insertQueryBuilder = new StringBuilder();
+        insertQueryBuilder.append("INSERT INTO auth (name, lastname, email, telephone, fileNumber, isActive, street, number, city, country) VALUES (");
+        insertQueryBuilder.append("'John', ");
+        insertQueryBuilder.append("'Doe', ");
+        insertQueryBuilder.append("'johndoe@example.com', ");
+        insertQueryBuilder.append("'123456789', ");
+        insertQueryBuilder.append("'12345', ");
+        insertQueryBuilder.append("1, ");
+        insertQueryBuilder.append("'Main Street', ");
+        insertQueryBuilder.append("'123', ");
+        insertQueryBuilder.append("'City', ");
+        insertQueryBuilder.append("'Country'");
+        insertQueryBuilder.append(");");
+
+        return insertQueryBuilder.toString();
+
+    }
+
+    private String queryUpdateEmployee(){
+        StringBuilder updateQueryBuilder = new StringBuilder();
+        updateQueryBuilder.append("UPDATE auth SET ");
+        updateQueryBuilder.append("name = 'Jane', ");
+        updateQueryBuilder.append("lastname = 'Smith', ");
+        updateQueryBuilder.append("email = 'janesmith@example.com', ");
+        updateQueryBuilder.append("telephone = '987654321', ");
+        updateQueryBuilder.append("fileNumber = '54321', ");
+        updateQueryBuilder.append("isActive = 0, ");
+        updateQueryBuilder.append("street = 'New Street', ");
+        updateQueryBuilder.append("number = '456', ");
+        updateQueryBuilder.append("city = 'New City', ");
+        updateQueryBuilder.append("country = 'New Country'");
+        updateQueryBuilder.append(" WHERE id = 1;");
+
+        return updateQueryBuilder.toString();
+
+
+    }
+
+
+    private String queryDeleteEmployee(){
+        StringBuilder deleteQueryBuilder = new StringBuilder();
+        deleteQueryBuilder.append("DELETE FROM auth WHERE id = 1;");
+
+        return deleteQueryBuilder.toString();
+
+    }
+
 
 }
