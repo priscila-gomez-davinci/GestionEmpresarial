@@ -67,11 +67,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         fillDatabase();
     }
     public void fillDatabase() {
-
         DbCreator dbCreator = new DbCreator(this);
         SQLiteDatabase db = dbCreator.getReadableDatabase();
-
-
     }
 
     @Override

@@ -1,5 +1,9 @@
 package com.example.gestionempresarial.model;
 
+import static com.example.gestionempresarial.utils.Constants.AUTH;
+import static com.example.gestionempresarial.utils.Constants.PASSWORD;
+import static com.example.gestionempresarial.utils.Constants.USER;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,15 +20,16 @@ public class LoginModel implements ILoginModel {
         this.context = context;
         DbCreator dbHelper = DbCreator.getInstance(context);
         database = dbHelper.getWritableDatabase();
+
+        dbHelper.testUser();
     }
 
     @Override
     public Auth loginUser(String user, String password) {
   // Realizar la consulta en la base de datos
-        String query = "SELECT * FROM auth WHERE user = ? AND password = ?";
-        String[] selectionArgs = {user, password};
+        String query = getUser(user, password);
 
-        Cursor cursor = database.rawQuery(query, selectionArgs);
+        Cursor cursor = database.rawQuery(query, null);
 
         Auth usuario = null;
         if (cursor.moveToFirst()) {
@@ -41,5 +46,26 @@ public class LoginModel implements ILoginModel {
 
         cursor.close();
         return usuario;
+    }
+
+
+    public String getUser(String user, String password){
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT  * FROM ");
+        sb.append(AUTH);
+        sb.append(" WHERE ");
+        sb.append(USER);
+        sb.append("= ");
+        sb.append("'");
+        sb.append(user);
+        sb.append("' ");
+        sb.append("AND ");
+        sb.append(PASSWORD);
+        sb.append("=");
+        sb.append("'");
+        sb.append(password);
+        sb.append("'");
+        return  sb.toString();
+
     }
 }

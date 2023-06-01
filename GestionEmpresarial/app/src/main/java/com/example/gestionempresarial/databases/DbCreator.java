@@ -39,6 +39,7 @@ public class DbCreator extends SQLiteOpenHelper {
 
         String queryToCreateEmployeesTable = createTableEmployees();
         sqLiteDatabase.execSQL(queryToCreateEmployeesTable);
+
     }
 
     @Override
@@ -52,16 +53,17 @@ public class DbCreator extends SQLiteOpenHelper {
 
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("CREATE TABLE employees (");
+        queryBuilder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, ");
         queryBuilder.append("name VARCHAR, ");
         queryBuilder.append("lastname VARCHAR, ");
         queryBuilder.append("email VARCHAR, ");
         queryBuilder.append("telephone VARCHAR, ");
         queryBuilder.append("file_number VARCHAR, ");
-        queryBuilder.append("is_active INTEGER, ");
         queryBuilder.append("street VARCHAR, ");
         queryBuilder.append("number VARCHAR, ");
         queryBuilder.append("city VARCHAR, ");
-        queryBuilder.append("country VARCHAR");
+        queryBuilder.append("country VARCHAR, ");
+        queryBuilder.append("is_active VARCHAR ");
         queryBuilder.append(");");
 
         return queryBuilder.toString();
@@ -73,7 +75,8 @@ public class DbCreator extends SQLiteOpenHelper {
         sb.append("name VARCHAR, ");
         sb.append("lastname VARCHAR, ");
         sb.append("user VARCHAR, ");
-        sb.append("password VARCHAR");
+        sb.append("password VARCHAR, ");
+        sb.append("is_active VARCHAR");
         sb.append(");");
 
         return sb.toString();
@@ -388,6 +391,46 @@ public class DbCreator extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return usuario;
+    }
+
+    public String testUser(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT OR IGNORE INTO auth");
+        sb.append("(");
+        sb.append("name");
+        sb.append(",");
+        sb.append("lastname");
+        sb.append(",");
+        sb.append("user");
+        sb.append(",");
+        sb.append("password");
+        sb.append(",");
+        sb.append("is_active");
+        sb.append(")");
+        sb.append(" VALUES ");
+        sb.append("( ");
+        sb.append("'");
+        sb.append("Priscila");
+        sb.append("'");
+        sb.append(",");
+        sb.append("'");
+        sb.append("Gomez");
+        sb.append("'");
+        sb.append(",");
+        sb.append("'");
+        sb.append("user");
+        sb.append("'");
+        sb.append(",");
+        sb.append("'");
+        sb.append("password");
+        sb.append("'");
+        sb.append(",");
+        sb.append("'");
+        sb.append("Si");
+        sb.append("'");
+        sb.append(")");
+
+        return sb.toString();
     }
 
 }
