@@ -2,11 +2,30 @@ package com.example.gestionempresarial.pojos;
 
 public class Auth {
 
+    public int id;
+
     public String name;
     public String lastname;
     public String user;
     public String password;
-    public Boolean isActive;
+    public String isActive;
+
+    public Auth(int id, String name, String lastname, String user, String password, String isActive) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.user = user;
+        this.password = password;
+        this.isActive = isActive;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -40,11 +59,11 @@ public class Auth {
         this.password = password;
     }
 
-    public Boolean getActive() {
+    public String getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(String active) {
         isActive = active;
     }
 }

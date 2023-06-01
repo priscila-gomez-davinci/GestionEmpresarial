@@ -12,9 +12,10 @@ import com.example.gestionempresarial.mvp.models.IEmployee;
 import com.example.gestionempresarial.pojos.Employee;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
-public class EmployeeModel implements IEmployee {
+public class EmployeeModel implements IEmployee, Serializable {
     private SQLiteDatabase database;
     private Context context;
 
@@ -25,7 +26,9 @@ public class EmployeeModel implements IEmployee {
     }
     @Override
     public List<Employee> getAllEmployees() {
+
         return null;
+
     }
 
     @Override

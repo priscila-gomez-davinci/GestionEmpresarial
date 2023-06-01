@@ -1,18 +1,29 @@
 package com.example.gestionempresarial.pojos;
 
 public class Employee {
+    public int id;
+
     public String name;
     public String lastname;
     public String email;
     public String telephone;
     public String fileNumber;
-    public Boolean isActive;
+    public String isActive;
     public String street;
     public String number;
     public String city;
     public String country;
     public String lat;
     public String lon;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getLat() {
         return lat;
@@ -70,11 +81,11 @@ public class Employee {
         this.country = postCode;
     }
 
-    public Boolean getActive() {
+    public String getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(String active) {
         isActive = active;
     }
 
