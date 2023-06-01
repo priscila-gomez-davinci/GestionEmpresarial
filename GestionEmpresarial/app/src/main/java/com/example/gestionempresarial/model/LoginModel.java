@@ -20,8 +20,6 @@ public class LoginModel implements ILoginModel {
         this.context = context;
         DbCreator dbHelper = DbCreator.getInstance(context);
         database = dbHelper.getWritableDatabase();
-
-        dbHelper.testUser();
     }
 
     @Override
@@ -34,6 +32,7 @@ public class LoginModel implements ILoginModel {
         Auth usuario = null;
         if (cursor.moveToFirst()) {
             do {
+                usuario = new Auth();
                 usuario.setId(cursor.getInt(0));
                 usuario.setName(cursor.getString(1));
                 usuario.setLastname(cursor.getString(2));

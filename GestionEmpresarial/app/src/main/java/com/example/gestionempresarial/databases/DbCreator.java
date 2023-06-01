@@ -24,7 +24,6 @@ public class DbCreator extends SQLiteOpenHelper {
 
     public DbCreator(Context context) {
         super(context, DATABASE_NAME, null, DB_VERSION);
-
     }
     public static synchronized DbCreator getInstance(Context context) {
         if (instance == null) {
@@ -39,6 +38,9 @@ public class DbCreator extends SQLiteOpenHelper {
 
         String queryToCreateEmployeesTable = createTableEmployees();
         sqLiteDatabase.execSQL(queryToCreateEmployeesTable);
+
+        String testUser = testUser();
+        sqLiteDatabase.execSQL(testUser);
 
     }
 

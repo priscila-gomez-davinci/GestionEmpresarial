@@ -19,6 +19,10 @@ public class Auth {
         this.isActive = isActive;
     }
 
+    public Auth(){
+
+    }
+
     public int getId() {
         return id;
     }

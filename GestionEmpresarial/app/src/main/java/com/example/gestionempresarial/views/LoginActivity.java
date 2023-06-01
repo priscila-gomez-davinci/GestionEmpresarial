@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void showLoginSuccess() {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("user", (Serializable) usuario);
         startActivity(intent);
     }
 
