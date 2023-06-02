@@ -17,6 +17,9 @@
         android:theme="@style/Theme.GestionEmpresarial"
         tools:targetApi="31">
         <activity
+            android:name=".views.RegisterEmployeeActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.LTSplash"
             android:exported="true">
             <intent-filter>
@@ -29,7 +32,7 @@
             android:name=".views.EmployeeDetail"
             android:exported="false" />
         <activity
-            android:name=".views.Register"
+            android:name=".views.RegisterUserActivity"
             android:exported="false" />
         <activity
             android:name=".views.MyProfile"
@@ -42,7 +45,7 @@
             android:exported="false" />
         <activity
             android:name=".views.LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

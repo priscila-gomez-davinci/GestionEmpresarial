@@ -9,15 +9,17 @@ import android.widget.Toast;
 
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.mvp.models.IEmployee;
+import com.example.gestionempresarial.mvp.view.IRegisterModel;
 import com.example.gestionempresarial.pojos.Employee;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-public class EmployeeModel implements IEmployee {
+public class EmployeeModel implements IEmployee  {
     private SQLiteDatabase database;
     private Context context;
+
 
     public EmployeeModel(Context context) {
         this.context = context;
@@ -49,30 +51,5 @@ public class EmployeeModel implements IEmployee {
             // Mostrar un cartel informativo de registro duplicado o error de inserción
             Toast.makeText(context, "El empleado ya existe en la base de datos", Toast.LENGTH_SHORT).show();
         }
-    }
-
-
-    public void obtenerCoordenadasDireccion(String direccion, Context context, OnGeocodingResultListener listener) {
-        Geocoder geocoder = new Geocoder(context);
-
-        try {
-            List<Address> addresses = geocoder.getFromLocationName(direccion, 1);
-            if (addresses != null && !addresses.isEmpty()) {
-                Address address = addresses.get(0);
-                double latitud = address.getLatitude();
-                double longitud = address.getLongitude();
-                listener.onGeocodingSuccess(latitud, longitud);
-            } else {
-                listener.onGeocodingFailure("No se encontraron resultados para la dirección proporcionada");
-            }
-        } catch (IOException e) {
-            listener.onGeocodingFailure("Error al obtener las coordenadas de la dirección");
-            e.printStackTrace();
-        }
-    }
-
-    public interface OnGeocodingResultListener {
-        void onGeocodingSuccess(double latitud, double longitud);
-        void onGeocodingFailure(String mensajeError);
     }
 }

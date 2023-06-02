@@ -20,31 +20,30 @@ public class HomeActivity extends AppCompatActivity {
         Button list = findViewById(R.id.btn_employees);
         Button myProfile = findViewById(R.id.btn_myprofile);
         TextView logout = findViewById(R.id.btn_logout);
+        Button register_employee = findViewById(R.id.btn_register_employee);
 
 
-        list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), EmployeesList.class);
-                startActivity(intent);
-            }
+        list.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), EmployeesList.class);
+            startActivity(intent);
         });
 
-        myProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyProfile.class);
-                startActivity(intent);
-            }
+        myProfile.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+            startActivity(intent);
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        logout.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+        register_employee.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), RegisterEmployeeActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
