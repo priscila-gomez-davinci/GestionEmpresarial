@@ -15,53 +15,52 @@
             android:id="@+id/et_legajo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Numero legajo"/>
+            android:hint="@string/numero_legajo"/>
         <EditText
             android:id="@+id/et_nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre"/>
+            android:hint="@string/nombre"/>
         <EditText
             android:id="@+id/et_apellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Apellido"/>
+            android:hint="@string/apellido"/>
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"/>
+            android:hint="@string/email"/>
         <EditText
             android:id="@+id/et_telefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Teléfono"/>
+            android:hint="@string/tel_fono"/>
         <EditText
             android:id="@+id/et_calle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Calle"/>
+            android:hint="@string/calle"/>
         <EditText
             android:id="@+id/et_numero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Número"/>
+            android:hint="@string/n_mero"/>
         <EditText
             android:id="@+id/et_ciudad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ciudad"/>
+            android:hint="@string/ciudad"/>
         <EditText
             android:id="@+id/et_pais"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="País"/>
-
+            android:hint="@string/pa_s"/>
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register"
             android:textColor="@color/blanco"/>
 
     </LinearLayout>

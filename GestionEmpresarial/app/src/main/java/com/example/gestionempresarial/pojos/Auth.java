@@ -1,6 +1,8 @@
 package com.example.gestionempresarial.pojos;
 
-public class Auth {
+import java.io.Serializable;
+
+public class Auth implements Serializable {
 
     public int id;
 

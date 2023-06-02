@@ -1,6 +1,8 @@
 package com.example.gestionempresarial.pojos;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable {
     public int id;
 
     public String name;

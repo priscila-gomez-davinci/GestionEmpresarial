@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-public class EmployeeModel implements IEmployee, Serializable {
+public class EmployeeModel implements IEmployee {
     private SQLiteDatabase database;
     private Context context;
 

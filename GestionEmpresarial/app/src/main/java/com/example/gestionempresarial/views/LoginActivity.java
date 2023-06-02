@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void showLoginSuccess() {
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("user", usuario);
         startActivity(intent);
     }
 
@@ -87,17 +88,14 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         this.usuario = usuario;
     }
 
-
     private AlertDialog errorLoginDialog()
     {
         return new AlertDialog.Builder(this)
                 .setTitle("Credenciales erróneas")
                 .setMessage("Por favor reingrese las credenciales")
 
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
 
-                    }
                 })
                 .create();
     }
