@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.databases.DbCreator;
@@ -19,9 +21,13 @@ public class EmployeesListAdapter extends BaseAdapter {
 
     public List<Employee> empleados;
 
-    public EmployeesListAdapter(Context context) {
+    public TextView nombre;
+    public TextView apellido;
+
+    public EmployeesListAdapter(Context context,List<Employee> empleados) {
         database = new DbCreator(context);
         mLayoutInflater = LayoutInflater.from(context);
+        this.empleados = empleados;
     }
 
     @Override
@@ -43,6 +49,8 @@ public class EmployeesListAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null) {
             view = mLayoutInflater.inflate(R.layout.employee_row, null);
+                nombre = view.findViewById(R.id.nombre);
+                apellido = view.findViewById(R.id.apellido);
         }
         return view;
     }

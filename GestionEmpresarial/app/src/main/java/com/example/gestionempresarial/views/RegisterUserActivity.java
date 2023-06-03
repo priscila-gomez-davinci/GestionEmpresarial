@@ -7,11 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.gestionempresarial.R;
-import com.example.gestionempresarial.model.EmployeeModel;
 import com.example.gestionempresarial.model.RegisterUserModel;
-import com.example.gestionempresarial.mvp.view.IRegisterEmployeeView;
 import com.example.gestionempresarial.mvp.view.IRegisterUserView;
-import com.example.gestionempresarial.presenters.RegisterEmployeePresenter;
 import com.example.gestionempresarial.presenters.RegisterUserPresenter;
 
 public class RegisterUserActivity extends AppCompatActivity implements IRegisterUserView {

@@ -42,6 +42,15 @@ public class DbCreator extends SQLiteOpenHelper {
         String testUser = testUser();
         sqLiteDatabase.execSQL(testUser);
 
+
+        String employeeTest1 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "street", "number",  "city", "country",  "lat", "lon" );
+        String employeeTest2 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "street", "number",  "city", "country",  "lat", "lon" );
+        String employeeTest3 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "street", "number",  "city", "country",  "lat", "lon" );
+
+        sqLiteDatabase.execSQL(employeeTest1);
+        sqLiteDatabase.execSQL(employeeTest2);
+        sqLiteDatabase.execSQL(employeeTest3);
+
     }
 
     @Override
@@ -65,6 +74,8 @@ public class DbCreator extends SQLiteOpenHelper {
         queryBuilder.append("number VARCHAR, ");
         queryBuilder.append("city VARCHAR, ");
         queryBuilder.append("country VARCHAR, ");
+        queryBuilder.append("latitud VARCHAR, ");
+        queryBuilder.append("longitud VARCHAR, ");
         queryBuilder.append("is_active VARCHAR ");
         queryBuilder.append(");");
 
@@ -99,8 +110,6 @@ public class DbCreator extends SQLiteOpenHelper {
         sb.append(" , ");
         sb.append("file_number");
         sb.append(" , ");
-        sb.append("is_active");
-        sb.append(" , ");
         sb.append("street");
         sb.append(" , ");
         sb.append("number");
@@ -112,6 +121,8 @@ public class DbCreator extends SQLiteOpenHelper {
         sb.append("latitud");
         sb.append(" , ");
         sb.append("longitud");
+        sb.append(" , ");
+        sb.append("is_active");
         sb.append(")");
         sb.append(" VALUES ");
         sb.append("( ");
@@ -136,10 +147,6 @@ public class DbCreator extends SQLiteOpenHelper {
         sb.append("' ");
         sb.append(" , ");
         sb.append(" '");
-        sb.append(isActive);
-        sb.append("' ");
-        sb.append(" , ");
-        sb.append(" '");
         sb.append(street);
         sb.append("' ");
         sb.append(" , ");
@@ -161,6 +168,10 @@ public class DbCreator extends SQLiteOpenHelper {
         sb.append(" , ");
         sb.append(" '");
         sb.append(lon);
+        sb.append("' ");
+        sb.append(" , ");
+        sb.append(" '");
+        sb.append(isActive);
         sb.append("' ");
         sb.append(")");
 
