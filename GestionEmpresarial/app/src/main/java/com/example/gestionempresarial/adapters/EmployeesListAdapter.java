@@ -12,14 +12,14 @@ import com.example.gestionempresarial.pojos.Employee;
 
 import java.util.List;
 
-public class EmployeesAdapter extends BaseAdapter {
+public class EmployeesListAdapter extends BaseAdapter {
 
     LayoutInflater mLayoutInflater;
     DbCreator database;
 
     public List<Employee> empleados;
 
-    public EmployeesAdapter(Context context) {
+    public EmployeesListAdapter(Context context) {
         database = new DbCreator(context);
         mLayoutInflater = LayoutInflater.from(context);
     }

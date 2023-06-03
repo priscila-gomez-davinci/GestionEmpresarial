@@ -1,4 +1,4 @@
-package com.example.gestionempresarial.mvp.view;
+package com.example.gestionempresarial.mvp.models;
 
 
 import android.content.Context;

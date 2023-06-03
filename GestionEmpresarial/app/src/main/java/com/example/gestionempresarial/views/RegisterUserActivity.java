@@ -8,42 +8,39 @@ import android.widget.EditText;
 
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.model.EmployeeModel;
-import com.example.gestionempresarial.mvp.models.IRegisterEmployeeView;
+import com.example.gestionempresarial.model.RegisterUserModel;
+import com.example.gestionempresarial.mvp.view.IRegisterEmployeeView;
+import com.example.gestionempresarial.mvp.view.IRegisterUserView;
 import com.example.gestionempresarial.presenters.RegisterEmployeePresenter;
+import com.example.gestionempresarial.presenters.RegisterUserPresenter;
 
-public class RegisterUserActivity extends AppCompatActivity implements IRegisterEmployeeView {
+public class RegisterUserActivity extends AppCompatActivity implements IRegisterUserView {
 
-    EditText et_legajo, et_nombre, et_apellido, et_email, et_telefono, et_calle, et_numero, et_ciudad, et_pais;
+    EditText et_nombre, et_apellido, et_usuario, et_password;
+    String nombre, apellido, usuario, password;
 
-    String legajo, nombre, apellido, email, telefono, calle, numero, ciudad, pais, direccion;
-    public double latitud, longitud;
-
-    EmployeeModel model = null;
-    RegisterEmployeePresenter presenter = null;
+    RegisterUserModel model = null;
+    RegisterUserPresenter presenter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
-        model = new EmployeeModel(this);
+        model = new RegisterUserModel(this);
+        presenter =  new RegisterUserPresenter(this, model);
 
         Button register = findViewById(R.id.btn_register);
 
-        et_legajo = findViewById(R.id.et_legajo);
         et_nombre = findViewById(R.id.et_nombre);
         et_apellido = findViewById(R.id.et_apellido);
-        et_email = findViewById(R.id.et_email);
-        et_telefono = findViewById(R.id.et_telefono);
-        et_calle = findViewById(R.id.et_calle);
-        et_numero = findViewById(R.id.et_numero);
-        et_ciudad = findViewById(R.id.et_ciudad);
-        et_pais = findViewById(R.id.et_pais);
+        et_usuario = findViewById(R.id.et_usuario);
+        et_password = findViewById(R.id.et_password);
 
 
         register.setOnClickListener(view -> {
-            obtenerDatos();
-            presenter.obtenerCoordenadasDireccion(direccion, this);
+            obtenerValidarDatos();
+            model.generateUser(nombre, apellido, usuario, password);
             //Agregar dos textview y un boton para la busqueda de las coordenadas, si las coordenadas estan mal, que no se active el boton de registro y que se vea el error
 
             //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -51,12 +48,6 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
         });
 
 
-    }
-
-    @Override
-    public void setLatAndLon(double lat, double lon) {
-        latitud = lat;
-        longitud = lon;
     }
 
     @Override
@@ -75,27 +66,10 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
     }
 
     @Override
-    public void obtenerDatos() {
-        legajo = et_legajo.getText().toString();
+    public void obtenerValidarDatos() {
         nombre = et_nombre.getText().toString();
         apellido = et_apellido.getText().toString();
-        email= et_email.getText().toString();
-        telefono = et_telefono.getText().toString();
-        calle = et_calle.getText().toString();
-        numero = et_numero.getText().toString();
-        ciudad = et_ciudad.getText().toString();
-        pais = et_pais.getText().toString();
-
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(calle);
-        sb.append(" ");
-        sb.append(numero);
-        sb.append(" , ");
-        sb.append(ciudad);
-        sb.append(" , ");
-        sb.append(pais);
-        direccion = sb.toString();
-
+        usuario = et_usuario.getText().toString();
+        password= et_password.getText().toString();
     }
 }

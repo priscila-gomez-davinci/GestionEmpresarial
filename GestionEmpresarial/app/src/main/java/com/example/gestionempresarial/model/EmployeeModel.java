@@ -3,17 +3,12 @@ package com.example.gestionempresarial.model;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.location.Address;
-import android.location.Geocoder;
 import android.widget.Toast;
 
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.mvp.models.IEmployee;
-import com.example.gestionempresarial.mvp.view.IRegisterModel;
 import com.example.gestionempresarial.pojos.Employee;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 
 public class EmployeeModel implements IEmployee  {

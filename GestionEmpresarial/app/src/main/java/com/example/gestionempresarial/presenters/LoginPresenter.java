@@ -8,6 +8,7 @@ public class LoginPresenter {
     private ILoginView view;
     private ILoginModel model;
     private Auth usuario = null;
+
     public LoginPresenter(ILoginView view, ILoginModel model) {
         this.view = view;
         this.model = model;

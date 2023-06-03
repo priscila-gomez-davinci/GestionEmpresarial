@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.model.RegisterEmployeeModel;
-import com.example.gestionempresarial.mvp.models.IRegisterEmployeeView;
+import com.example.gestionempresarial.mvp.view.IRegisterEmployeeView;
 import com.example.gestionempresarial.presenters.RegisterEmployeePresenter;
 
 public class RegisterEmployeeActivity extends AppCompatActivity implements IRegisterEmployeeView {

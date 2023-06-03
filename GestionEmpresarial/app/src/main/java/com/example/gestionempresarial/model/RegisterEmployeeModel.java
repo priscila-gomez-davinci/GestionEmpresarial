@@ -6,7 +6,7 @@ import android.location.Address;
 import android.location.Geocoder;
 
 import com.example.gestionempresarial.databases.DbCreator;
-import com.example.gestionempresarial.mvp.view.IRegisterModel;
+import com.example.gestionempresarial.mvp.models.IRegisterModel;
 
 import java.io.IOException;
 import java.util.List;

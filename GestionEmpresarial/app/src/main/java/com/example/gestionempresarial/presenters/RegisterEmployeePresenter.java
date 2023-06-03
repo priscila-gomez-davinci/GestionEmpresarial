@@ -3,8 +3,8 @@ package com.example.gestionempresarial.presenters;
 import android.content.Context;
 
 import com.example.gestionempresarial.model.RegisterEmployeeModel;
-import com.example.gestionempresarial.mvp.models.IRegisterEmployeeView;
-import com.example.gestionempresarial.mvp.view.IRegisterModel;
+import com.example.gestionempresarial.mvp.view.IRegisterEmployeeView;
+import com.example.gestionempresarial.mvp.models.IRegisterModel;
 
 public class RegisterEmployeePresenter {
     private final IRegisterModel model;
