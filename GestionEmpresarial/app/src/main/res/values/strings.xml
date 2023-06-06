@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">GestionEmpresarial</string>
-    <string name="numero_legajo">Numero legajo</string>
-    <string name="nombre">Nombre</string>
-    <string name="apellido">Apellido</string>
-    <string name="email">Email</string>
-    <string name="tel_fono">Teléfono</string>
-    <string name="calle">Calle</string>
-    <string name="n_mero">Número</string>
-    <string name="ciudad">Ciudad</string>
-    <string name="pa_s">País</string>
+    <string name="numero_legajo">Numero legajo: </string>
+    <string name="nombre">Nombre: </string>
+    <string name="apellido">Apellido: </string>
+    <string name="email">Email: </string>
+    <string name="tel_fono">Teléfono: </string>
+    <string name="calle">Calle: </string>
+    <string name="n_mero">Número: </string>
+    <string name="ciudad">Ciudad: </string>
+    <string name="pa_s">País: </string>
     <string name="register">Registar</string>
+    <string name="update">Actualizar</string>
+    <string name="delete">Eliminar</string>
+    <string name="back">Volver</string>
 </resources>

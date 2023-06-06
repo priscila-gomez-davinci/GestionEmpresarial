@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface IEmployeeListModel {
     List<Employee> getAllEmployees();
-    void insertEmployee(Employee employee);
 }
