@@ -15,6 +15,7 @@ import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.model.LoginModel;
 import com.example.gestionempresarial.mvp.view.ILoginView;
 import com.example.gestionempresarial.pojos.Auth;
+import com.example.gestionempresarial.pojos.Employee;
 import com.example.gestionempresarial.presenters.LoginPresenter;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
@@ -66,7 +67,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void showLoginSuccess() {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("user", usuario);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", usuario);
         startActivity(intent);
     }
 

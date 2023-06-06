@@ -1,6 +1,8 @@
 package com.example.gestionempresarial.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import android.widget.TextView;
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.pojos.Employee;
+import com.example.gestionempresarial.views.EmployeeDetail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeesListAdapter extends BaseAdapter {
@@ -51,6 +55,18 @@ public class EmployeesListAdapter extends BaseAdapter {
             view = mLayoutInflater.inflate(R.layout.employee_row, null);
                 nombre = view.findViewById(R.id.nombre);
                 apellido = view.findViewById(R.id.apellido);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(viewGroup.getContext(), EmployeeDetail.class);
+                    Bundle bundle = new Bundle();
+                    Employee empleado = empleados.get(i);
+                    bundle.putSerializable("empleado", empleado);
+                    intent.putExtras(bundle);
+                    viewGroup.getContext().startActivity(intent);
+                }
+            });
         }
         return view;
     }
