@@ -2,6 +2,8 @@ package com.example.gestionempresarial.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +11,7 @@ import android.widget.EditText;
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.model.RegisterUserModel;
 import com.example.gestionempresarial.mvp.view.IRegisterUserView;
+import com.example.gestionempresarial.presenters.LoginPresenter;
 import com.example.gestionempresarial.presenters.RegisterUserPresenter;
 
 public class RegisterUserActivity extends AppCompatActivity implements IRegisterUserView {
@@ -36,12 +39,13 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
 
 
         register.setOnClickListener(view -> {
-            obtenerValidarDatos();
-            model.generateUser(nombre, apellido, usuario, password);
-            //Agregar dos textview y un boton para la busqueda de las coordenadas, si las coordenadas estan mal, que no se active el boton de registro y que se vea el error
 
-            //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-            //startActivity(intent);
+            if(validateForm()){
+                obtenerValidarDatos();
+                model.generateUser(nombre, apellido, usuario, password);
+                errorLoginDialog().show();
+            }
+
         });
 
 
@@ -60,6 +64,31 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
     @Override
     public void showFormError() {
 
+
+    }
+
+    @Override
+    public boolean validateForm() {
+        if (et_nombre.length() == 0) {
+            et_nombre.setError("Campo requerido");
+            return false;
+        }
+
+        if (et_apellido.length() == 0) {
+            et_apellido.setError("Campo requerido");
+            return false;
+        }
+
+        if (et_usuario.length() == 0) {
+            et_usuario.setError("Campo requerido");
+            return false;
+        }
+
+        if (et_password.length() == 0) {
+            et_password.setError("Campo requerido");
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -68,5 +97,20 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
         apellido = et_apellido.getText().toString();
         usuario = et_usuario.getText().toString();
         password= et_password.getText().toString();
+
+    }
+
+    private AlertDialog errorLoginDialog()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("Usuario creado")
+                .setMessage("Se lo redirigirá al login")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .create();
     }
 }
