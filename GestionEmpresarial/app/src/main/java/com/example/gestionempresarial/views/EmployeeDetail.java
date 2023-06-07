@@ -1,13 +1,20 @@
 package com.example.gestionempresarial.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.mvp.view.IEmployeeDetailView;
@@ -20,8 +27,10 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
     TextView tv_legajo , tv_nombre, tv_apellido, tv_email, tv_telefono, tv_calle, tv_numero, tv_ciudad, tv_pais;
     String legajo , nombre, apellido, email, telefono, calle, numero, ciudad, pais;
     Employee empleado;
+    double lat, lon;
 
-    Button btn_edit, btn_delete, btn_back, btn_update;
+    Button btn_edit, btn_delete, btn_back, btn_update, btn_call, btn_maps;
+    private final int TEL_COD = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +47,17 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         numero= empleado.getNumber();
         ciudad= empleado.getCity();
         pais = empleado.getCountry();
+        lat =  Double.parseDouble(empleado.getLat());
+        lon =  Double.parseDouble(empleado.getLon());
+
 
 
         btn_edit = findViewById(R.id.btn_edit);
         btn_delete = findViewById(R.id.btn_delete);
         btn_back = findViewById(R.id.btn_back);
         btn_update  = findViewById(R.id.btn_update);
+        btn_call = findViewById(R.id.btn_call);
+        btn_maps = findViewById(R.id.btn_maps);
 
         tv_legajo= findViewById(R.id.tv_legajo);
         tv_nombre= findViewById(R.id.tv_nombre);
@@ -64,12 +78,10 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         et_numero= findViewById(R.id.et_numero);
         et_ciudad= findViewById(R.id.et_ciudad);
         et_pais= findViewById(R.id.et_pais);
-
-
-
-
         fillViewDefault();
-        btn_update.setOnClickListener(new View.OnClickListener() {
+
+
+        btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fillViewEditable();
@@ -86,6 +98,69 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
             }
         });
 
+        btn_call.setOnClickListener(view -> {
+            if (telefono != null){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, TEL_COD);
+                } else{
+                    OlderVersions(telefono);
+
+                }
+        }
+    });
+
+
+
+        btn_maps.setOnClickListener(view -> {
+            Intent intent = new Intent(EmployeeDetail.this , MapsActivity.class);
+            intent.putExtra("lat", lat);
+            intent.putExtra("lon", lon);
+            startActivity(intent);
+        });
+    }
+
+
+
+    private void OlderVersions(String phoneNumber){
+        Intent intentCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phoneNumber));
+
+        int result = checkCallingOrSelfPermission(android.Manifest.permission.CALL_PHONE);
+        if ( result == PackageManager.PERMISSION_GRANTED){
+
+            startActivity(intentCall);}
+        else{
+            Toast.makeText(EmployeeDetail.this, "Acceso no autorizado", Toast.LENGTH_LONG).show();
+
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case TEL_COD:
+                String permisos = permissions[0];
+                int result = grantResults[0];
+                if (permisos.equals(android.Manifest.permission.CALL_PHONE)){
+                    if (result == PackageManager.PERMISSION_GRANTED){
+                        Intent intentCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+telefono));
+                        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) return;
+                        startActivity(intentCall);
+
+                    }
+                    else{
+                        Toast.makeText(EmployeeDetail.this, "Acceso no autorizado", Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                break;
+        }
+
+    }
+
+    private boolean CheckPermission(String permission){
+        int result = this.checkCallingOrSelfPermission(permission);
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     @Override

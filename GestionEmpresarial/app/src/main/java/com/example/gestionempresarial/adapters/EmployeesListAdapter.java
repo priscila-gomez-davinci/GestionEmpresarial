@@ -56,16 +56,13 @@ public class EmployeesListAdapter extends BaseAdapter {
                 nombre = view.findViewById(R.id.nombre);
                 apellido = view.findViewById(R.id.apellido);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(viewGroup.getContext(), EmployeeDetail.class);
-                    Bundle bundle = new Bundle();
-                    Employee empleado = empleados.get(i);
-                    bundle.putSerializable("empleado", empleado);
-                    intent.putExtras(bundle);
-                    viewGroup.getContext().startActivity(intent);
-                }
+            view.setOnClickListener(view1 -> {
+                Intent intent = new Intent(viewGroup.getContext(), EmployeeDetail.class);
+                Bundle bundle = new Bundle();
+                Employee empleado = empleados.get(i);
+                bundle.putSerializable("empleado", empleado);
+                intent.putExtras(bundle);
+                viewGroup.getContext().startActivity(intent);
             });
         }
         return view;

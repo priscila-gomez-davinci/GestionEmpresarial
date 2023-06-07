@@ -368,6 +368,24 @@
                 android:text="@string/back"
                 android:textColor="@color/blanco"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/btn_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/llamar"
+                android:textColor="@color/blanco"/>
+            <Button
+                android:id="@+id/btn_maps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ver_ubicacion"
+                android:textColor="@color/blanco"/>
+        </LinearLayout>
 
     </LinearLayout>
 
