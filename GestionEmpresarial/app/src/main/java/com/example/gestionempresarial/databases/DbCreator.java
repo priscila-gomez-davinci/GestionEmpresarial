@@ -43,9 +43,9 @@ public class DbCreator extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(testUser);
 
 
-        String employeeTest1 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "street", "number",  "city", "country",  "lat", "lon" );
-        String employeeTest2 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "street", "number",  "city", "country",  "lat", "lon" );
-        String employeeTest3 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "street", "number",  "city", "country",  "lat", "lon" );
+        String employeeTest1 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
+        String employeeTest2 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
+        String employeeTest3 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
 
         sqLiteDatabase.execSQL(employeeTest1);
         sqLiteDatabase.execSQL(employeeTest2);

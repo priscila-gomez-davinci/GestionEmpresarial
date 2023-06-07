@@ -25,7 +25,7 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
     LinearLayout ll_noeditable, ll_editable;
     EditText et_legajo , et_nombre, et_apellido, et_email, et_telefono, et_calle, et_numero, et_ciudad, et_pais;
     TextView tv_legajo , tv_nombre, tv_apellido, tv_email, tv_telefono, tv_calle, tv_numero, tv_ciudad, tv_pais;
-    String legajo , nombre, apellido, email, telefono, calle, numero, ciudad, pais;
+    String legajo , nombre, apellido, email, telefono, calle, numero, ciudad, pais, direccion;
     Employee empleado;
     double lat, lon;
 
@@ -47,10 +47,7 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         numero= empleado.getNumber();
         ciudad= empleado.getCity();
         pais = empleado.getCountry();
-        lat =  Double.parseDouble(empleado.getLat());
-        lon =  Double.parseDouble(empleado.getLon());
-
-
+        direccion = direccion(calle, numero, ciudad, pais);
 
         btn_edit = findViewById(R.id.btn_edit);
         btn_delete = findViewById(R.id.btn_delete);
@@ -113,8 +110,10 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
 
         btn_maps.setOnClickListener(view -> {
             Intent intent = new Intent(EmployeeDetail.this , MapsActivity.class);
-            intent.putExtra("lat", lat);
-            intent.putExtra("lon", lon);
+            Bundle bun = new Bundle();
+            bun.putDouble("lat", lat);
+            bun.putDouble("lon", lon);
+            intent.putExtras(bun);
             startActivity(intent);
         });
     }
@@ -203,5 +202,19 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
     @Override
     public void successSaving() {
 
+    }
+
+    @Override
+    public String direccion(String calle, String altura, String ciudad, String pais) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(calle);
+        sb.append(" , ");
+        sb.append(altura);
+        sb.append(" , ");
+        sb.append(ciudad);
+        sb.append(" , ");
+        sb.append(pais);
+
+        return sb.toString();
     }
 }
