@@ -42,12 +42,14 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
 
             if(validateForm()){
                 obtenerValidarDatos();
-                model.generateUser(nombre, apellido, usuario, password);
-                errorLoginDialog().show();
+                if(!presenter.checkIfUserExists(usuario)){
+                    presenter.generateUser(nombre, apellido, usuario, password);
+                    successCreatedUser().show();
+                }else{
+                    existentUser().show();
+                }
             }
-
         });
-
 
     }
 
@@ -100,7 +102,7 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
 
     }
 
-    private AlertDialog errorLoginDialog()
+    private AlertDialog successCreatedUser()
     {
         return new AlertDialog.Builder(this)
                 .setTitle("Usuario creado")
@@ -110,6 +112,17 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
+                })
+                .create();
+    }
+
+    private AlertDialog existentUser()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("El usuario ya existe")
+                .setMessage("Por favor utilice otro nombre de usuario")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
                 })
                 .create();
     }
