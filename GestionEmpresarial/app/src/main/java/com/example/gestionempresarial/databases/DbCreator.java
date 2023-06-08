@@ -96,7 +96,7 @@ public class DbCreator extends SQLiteOpenHelper {
     }
 
     /**Tables insert**/
-    private String queryInsertEmployee(String name, String lastname, String email, String telephone, String filenumber, String isActive, String street, String number, String city, String country, String lat, String lon ) {
+    public String queryInsertEmployee(String name, String lastname, String email, String telephone, String filenumber, String isActive, String street, String number, String city, String country, String lat, String lon ) {
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT OR IGNORE INTO employees");
         sb.append("(");
@@ -356,13 +356,13 @@ public class DbCreator extends SQLiteOpenHelper {
                 list.setEmail(cursor.getString(3));
                 list.setTelephone(cursor.getString(4));
                 list.setFileNumber(cursor.getString(5));
-                list.setActive(cursor.getString(6));
-                list.setStreet(cursor.getString(7));
-                list.setNumber(cursor.getString(8));
+                list.setStreet(cursor.getString(6));
+                list.setNumber(cursor.getString(7));
                 list.setCity(cursor.getString(8));
-                list.setCountry(cursor.getString(8));
-                list.setLat(cursor.getString(8));
-                list.setLon(cursor.getString(8));
+                list.setCountry(cursor.getString(9));
+                list.setLat(cursor.getString(10));
+                list.setLon(cursor.getString(11));
+                list.setActive(cursor.getString(12));
 
                 employeesList.add(list);
             } while (cursor.moveToNext());

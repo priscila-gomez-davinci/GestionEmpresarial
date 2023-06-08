@@ -2,6 +2,8 @@ package com.example.gestionempresarial.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +17,7 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
 
     EditText et_legajo, et_nombre, et_apellido, et_email, et_telefono, et_calle, et_numero, et_ciudad, et_pais;
 
-    String legajo, nombre, apellido, email, telefono, calle, numero, ciudad, pais, direccion;
+    String legajo, nombre, apellido, email, telefono, calle, numero, ciudad, pais, direccion, lat, lon;
     public double latitud, longitud;
 
     RegisterEmployeeModel model = null;
@@ -27,7 +29,7 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_employee);
 
-        Button register = findViewById(R.id.btn_register);
+        Button register = findViewById(R.id.btn_register_employee);
 
         et_legajo = findViewById(R.id.et_legajo);
         et_nombre = findViewById(R.id.et_nombre);
@@ -45,11 +47,18 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
 
         register.setOnClickListener(view -> {
             obtenerDatos();
-            presenter.obtenerCoordenadasDireccion(direccion, getApplicationContext());
-            //Agregar dos textview y un boton para la busqueda de las coordenadas, si las coordenadas estan mal, que no se active el boton de registro y que se vea el error
+            if(presenter.checkIfEmployeeExists(legajo)){
+                errorDialog().show();
+            }else{
+                presenter.obtenerCoordenadasDireccion(direccion, getApplicationContext());
+                lat = String.valueOf(latitud);
+                lon = String.valueOf(longitud);
+                presenter.saveEmployee(nombre , apellido, email,  telefono, legajo,
+                        calle , numero , ciudad , pais, lat,  lon);
 
-            //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-            //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
         });
 
 
@@ -99,5 +108,17 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
         sb.append(pais);
         direccion = sb.toString();
 
+    }
+
+    private AlertDialog errorDialog()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("Usuario existente")
+                .setMessage("Ya existe un usuario con este legajo, revise el listado de nómina")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+
+                })
+                .create();
     }
 }

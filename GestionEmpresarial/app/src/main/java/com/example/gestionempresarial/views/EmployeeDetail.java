@@ -48,6 +48,8 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         ciudad= empleado.getCity();
         pais = empleado.getCountry();
         direccion = direccion(calle, numero, ciudad, pais);
+        lat = Double.parseDouble(empleado.getLat());
+        lon = Double.parseDouble(empleado.getLon());
 
         btn_edit = findViewById(R.id.btn_edit);
         btn_delete = findViewById(R.id.btn_delete);
@@ -110,10 +112,8 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
 
         btn_maps.setOnClickListener(view -> {
             Intent intent = new Intent(EmployeeDetail.this , MapsActivity.class);
-            Bundle bun = new Bundle();
-            bun.putDouble("lat", lat);
-            bun.putDouble("lon", lon);
-            intent.putExtras(bun);
+            intent.putExtra("lat", lat);
+            intent.putExtra("lon", lon);
             startActivity(intent);
         });
     }

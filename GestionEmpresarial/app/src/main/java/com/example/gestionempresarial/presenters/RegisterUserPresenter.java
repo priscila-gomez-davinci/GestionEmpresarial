@@ -22,7 +22,6 @@ public class RegisterUserPresenter implements IRegisterUserPresenter {
         model.generateUser( nombre,  apellido,  usuario, password);
     }
 
-
     @Override
     public boolean checkIfUserExists(String user) {
         return model.checkIfUserExists(user);

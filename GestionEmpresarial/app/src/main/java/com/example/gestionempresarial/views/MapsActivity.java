@@ -22,9 +22,8 @@ GoogleMap map;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        Bundle bundle = getIntent().getExtras();
-        lat =  bundle.getDouble("lat");
-        lon =  bundle.getDouble("lon");
+        lat =  getIntent().getExtras().getDouble("lat");
+        lon =  getIntent().getExtras().getDouble("lon");
 
         SupportMapFragment mf = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mf.getMapAsync(this);
