@@ -51,6 +51,9 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         lat = Double.parseDouble(empleado.getLat());
         lon = Double.parseDouble(empleado.getLon());
 
+
+        ll_editable = findViewById(R.id.ll_editable);
+        ll_noeditable = findViewById(R.id.ll_noeditable);
         btn_edit = findViewById(R.id.btn_edit);
         btn_delete = findViewById(R.id.btn_delete);
         btn_back = findViewById(R.id.btn_back);
