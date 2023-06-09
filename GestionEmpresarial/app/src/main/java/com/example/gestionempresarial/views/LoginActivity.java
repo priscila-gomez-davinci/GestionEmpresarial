@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         Intent intent = new Intent(this, HomeActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("user", usuario);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

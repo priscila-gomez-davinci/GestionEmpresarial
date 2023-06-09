@@ -9,9 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.gestionempresarial.R;
+import com.example.gestionempresarial.pojos.Auth;
+import com.example.gestionempresarial.pojos.Employee;
 
 public class HomeActivity extends AppCompatActivity {
 
+    Auth usuario = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,8 @@ public class HomeActivity extends AppCompatActivity {
         TextView logout = findViewById(R.id.btn_logout);
         Button register_employee = findViewById(R.id.btn_register_employee);
 
+        usuario = (Auth) getIntent().getExtras().getSerializable("user");
+
 
         list.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), EmployeesList.class);
@@ -29,7 +34,11 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         myProfile.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+
+            Intent intent = new Intent(this, MyProfile.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("user", usuario);
+            intent.putExtras(bundle);
             startActivity(intent);
         });
 
@@ -43,7 +52,6 @@ public class HomeActivity extends AppCompatActivity {
         register_employee.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), RegisterEmployeeActivity.class);
             startActivity(intent);
-            finish();
         });
     }
 }

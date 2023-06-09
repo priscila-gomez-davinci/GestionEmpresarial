@@ -15,4 +15,7 @@
     <string name="back">Volver</string>
     <string name="llamar">Llamar</string>
     <string name="ver_ubicacion">Ver ubicacion</string>
+    <string name="save">Guardar</string>
+    <string name="edit">Editar</string>
+    <string name="cancel">Cancelar</string>
 </resources>
