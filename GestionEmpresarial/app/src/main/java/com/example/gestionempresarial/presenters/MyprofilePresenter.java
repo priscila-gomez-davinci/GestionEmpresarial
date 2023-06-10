@@ -18,5 +18,20 @@ public class MyprofilePresenter implements IMyProfilePresenter {
     }
 
 
+    @Override
+    public void editUser(int id, String nombre, String apellido, String usuario, String password) {
+            model.updateUser(id,nombre,apellido,usuario,password);
 
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        model.deleteUser(id);
+    }
+
+    @Override
+    public Auth getNewUser(int id) {
+
+        return model.getNewUser(id);
+    }
 }

@@ -4,6 +4,8 @@ import static com.example.gestionempresarial.utils.Constants.AUTH;
 import static com.example.gestionempresarial.utils.Constants.DATABASE_NAME;
 import static com.example.gestionempresarial.utils.Constants.DB_VERSION;
 import static com.example.gestionempresarial.utils.Constants.EMPLOYEES;
+import static com.example.gestionempresarial.utils.Constants.ID;
+import static com.example.gestionempresarial.utils.Constants.IS_ACTIVE;
 import static com.example.gestionempresarial.utils.Constants.PASSWORD;
 import static com.example.gestionempresarial.utils.Constants.USER;
 
@@ -39,9 +41,6 @@ public class DbCreator extends SQLiteOpenHelper {
         String queryToCreateEmployeesTable = createTableEmployees();
         sqLiteDatabase.execSQL(queryToCreateEmployeesTable);
 
-        String testUser = testUser();
-        sqLiteDatabase.execSQL(testUser);
-
 
         String employeeTest1 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
         String employeeTest2 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
@@ -50,6 +49,12 @@ public class DbCreator extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(employeeTest1);
         sqLiteDatabase.execSQL(employeeTest2);
         sqLiteDatabase.execSQL(employeeTest3);
+
+
+        String user = queryInsertAuth("Prisci", "Gomez", "usuario", "pass", "N");
+        sqLiteDatabase.execSQL(user);
+        String user2 = queryInsertAuth("Prisci", "Gomez", "user", "pass", "S");
+        sqLiteDatabase.execSQL(user2);
 
     }
 
@@ -219,34 +224,34 @@ public class DbCreator extends SQLiteOpenHelper {
     }
 
     /**Tables update**/
-    private String queryUpdateAuth(int id, String name, String lastname, String user, String password, String isActive){
+    public String queryUpdateAuth(int id, String name, String lastname, String user, String password, String isActive){
         StringBuilder sb = new StringBuilder();
         sb.append("UPDATE auth SET");
-        sb.append("(");
+        sb.append(" ");
         sb.append("name = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(name);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("lastname = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(lastname);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("user = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(user);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("password = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(password);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("is_active = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(isActive);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append("WHERE id = ");
         sb.append(id);
         sb.append(";");
@@ -258,64 +263,64 @@ public class DbCreator extends SQLiteOpenHelper {
         sb.append("UPDATE employees SET");
         sb.append("(");
         sb.append("name = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(name);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("lastname = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(lastname);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("email = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(email);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("telephone = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(telephone);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("file_number = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(filenumber);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("is_active = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(isActive);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("street = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(street);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("number = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(number);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("city = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(city);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("country = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(country);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("latitud = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(lat);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append(" , ");
         sb.append("longitud = ");
-        sb.append(" ' ");
+        sb.append(" '");
         sb.append(lon);
-        sb.append(" ' ");
+        sb.append("' ");
         sb.append("WHERE id = ");
         sb.append(id);
         sb.append(";");
@@ -323,13 +328,17 @@ public class DbCreator extends SQLiteOpenHelper {
     }
 
     /**Tables delete**/
-    private String queryDeleteAuth(int id){
-        StringBuilder deleteQueryBuilder = new StringBuilder();
-        deleteQueryBuilder.append("DELETE FROM auth WHERE id = ");
-        deleteQueryBuilder.append(id);
-        deleteQueryBuilder.append(";");
-
-        return deleteQueryBuilder.toString();
+    public String queryDeleteAuth(int id){
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE auth SET ");
+        sb.append("is_active = ");
+        sb.append("usre '");
+        sb.append("N");
+        sb.append("' ");
+        sb.append("WHERE id = ");
+        sb.append(id);
+        sb.append(";");
+        return sb.toString();
     }
 
     private String queryDeleteEmployee(int id){
@@ -405,44 +414,18 @@ public class DbCreator extends SQLiteOpenHelper {
         return usuario;
     }
 
-    public String testUser(){
+    public String getUserById(int id){
         StringBuilder sb = new StringBuilder();
-        sb.append("INSERT OR IGNORE INTO auth");
-        sb.append("(");
-        sb.append("name");
-        sb.append(",");
-        sb.append("lastname");
-        sb.append(",");
-        sb.append("user");
-        sb.append(",");
-        sb.append("password");
-        sb.append(",");
-        sb.append("is_active");
-        sb.append(")");
-        sb.append(" VALUES ");
-        sb.append("( ");
+        sb.append("SELECT  * FROM ");
+        sb.append(AUTH);
+        sb.append(" WHERE ");
+        sb.append(ID);
+        sb.append("= ");
         sb.append("'");
-        sb.append("Priscila");
-        sb.append("'");
-        sb.append(",");
-        sb.append("'");
-        sb.append("Gomez");
-        sb.append("'");
-        sb.append(",");
-        sb.append("'");
-        sb.append("user");
-        sb.append("'");
-        sb.append(",");
-        sb.append("'");
-        sb.append("password");
-        sb.append("'");
-        sb.append(",");
-        sb.append("'");
-        sb.append("Si");
-        sb.append("'");
-        sb.append(")");
+        sb.append(id);
+        sb.append("' ");
 
-        return sb.toString();
+        return  sb.toString();
+
     }
-
 }

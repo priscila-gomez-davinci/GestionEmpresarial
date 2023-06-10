@@ -1,6 +1,7 @@
 package com.example.gestionempresarial.model;
 
 import static com.example.gestionempresarial.utils.Constants.AUTH;
+import static com.example.gestionempresarial.utils.Constants.IS_ACTIVE;
 import static com.example.gestionempresarial.utils.Constants.PASSWORD;
 import static com.example.gestionempresarial.utils.Constants.USER;
 
@@ -63,6 +64,12 @@ public class LoginModel implements ILoginModel {
         sb.append("=");
         sb.append("'");
         sb.append(password);
+        sb.append("'");
+        sb.append(" AND ");
+        sb.append(IS_ACTIVE);
+        sb.append("=");
+        sb.append("'");
+        sb.append("S");
         sb.append("'");
         return  sb.toString();
 

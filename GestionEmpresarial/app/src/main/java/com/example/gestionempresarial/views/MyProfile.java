@@ -3,6 +3,7 @@ package com.example.gestionempresarial.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.gestionempresarial.R;
+import com.example.gestionempresarial.model.MyProfileModel;
 import com.example.gestionempresarial.mvp.view.IMyProfileView;
 import com.example.gestionempresarial.pojos.Auth;
+import com.example.gestionempresarial.presenters.MyprofilePresenter;
 
 public class MyProfile extends AppCompatActivity implements IMyProfileView {
 
@@ -24,10 +27,16 @@ public class MyProfile extends AppCompatActivity implements IMyProfileView {
     Button btn_guardar,btn_cancel, btn_editar, btn_eliminar, btn_salir;
     LinearLayout ll_noeditable, ll_editable, save_cancel_buttons, ll_buttons;
 
+    MyprofilePresenter presenter;
+    MyProfileModel model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+
+        model = new MyProfileModel(this);
+        presenter = new MyprofilePresenter(this, model);
 
         usuario = (Auth) getIntent().getExtras().getSerializable("user");
         name = usuario.getName();
@@ -67,6 +76,8 @@ public class MyProfile extends AppCompatActivity implements IMyProfileView {
         btn_cancel.setOnClickListener(view -> setNotEditable() );
         btn_salir.setOnClickListener(view -> finish());
         btn_eliminar.setOnClickListener(view -> deleteUserDialog().show());
+        btn_guardar.setOnClickListener(view -> editUserDialog().show());
+
     }
 
     @Override
@@ -91,14 +102,55 @@ public class MyProfile extends AppCompatActivity implements IMyProfileView {
         ll_editable.setVisibility(View.GONE);
     }
 
+    @Override
+    public void setNewUser() {
+        usuario = presenter.getNewUser(id);
+        name = usuario.getName();
+        lastname = usuario.getLastname();
+        user = usuario.getUser();
+        password = usuario.getPassword();
+        isActive = usuario.getActive();
+        id = usuario.getId();
+
+        tv_nombre.setText(name);
+        tv_usuario.setText(user);
+        tv_apellido.setText(lastname);
+        tv_password.setText(password);
+
+        ll_noeditable.setVisibility(View.VISIBLE);
+        ll_editable.setVisibility(View.GONE);
+
+    }
+
     private AlertDialog deleteUserDialog()
     {
         return new AlertDialog.Builder(this)
-                .setTitle("¿Esta seguro de que desea eliminar este usuario?")
-                .setMessage("Confirmar acción")
+                .setTitle("Confirmar acción")
+                .setMessage("¿Esta seguro de que desea eliminar este usuario?")
 
                 .setPositiveButton("Ok", (dialog, whichButton) -> {
-                    /**Acá iría la lógica de eliminación**/
+                    presenter.deleteUser(id);
+                    Intent intent = new Intent(MyProfile.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("No", (dialog, whichButton) -> {
+
+                })
+                .create();
+    }
+    private AlertDialog editUserDialog() {
+        return new AlertDialog.Builder(this)
+                .setTitle("Confirmar")
+                .setMessage("¿Confirma el guardado de los nuevos datos para este usuario?")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+                    presenter.editUser(id,
+                            et_nombre.getText().toString(),
+                            et_apellido.getText().toString(),
+                            et_usuario.getText().toString(),
+                            et_password.getText().toString());
+                    setNewUser();
                 })
                 .setNegativeButton("No", (dialog, whichButton) -> {
 
