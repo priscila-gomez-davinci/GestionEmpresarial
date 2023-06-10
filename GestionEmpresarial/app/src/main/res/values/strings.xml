@@ -19,4 +19,5 @@
     <string name="edit">Editar</string>
     <string name="cancel">Cancelar</string>
     <string name="usuario">Usuario</string>
+    <string name="enviar_mail">E-mail</string>
 </resources>

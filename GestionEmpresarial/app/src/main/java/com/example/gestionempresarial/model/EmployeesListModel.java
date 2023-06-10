@@ -28,9 +28,4 @@ public class EmployeesListModel implements IEmployeeListModel {
         empleados = dbHelper.getEmployees();
         return empleados;
     }
-
-
-    public void insertEmployee(Employee employee) {
-
-    }
 }

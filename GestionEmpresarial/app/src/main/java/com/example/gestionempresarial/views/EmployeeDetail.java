@@ -25,15 +25,15 @@ import com.example.gestionempresarial.presenters.EmployeeDetailPresenter;
 
 public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetailView {
 
-    LinearLayout ll_noeditable, ll_editable;
-    EditText et_legajo , et_nombre, et_apellido, et_email, et_telefono, et_calle, et_numero, et_ciudad, et_pais;
-    TextView tv_legajo , tv_nombre, tv_apellido, tv_email, tv_telefono, tv_calle, tv_numero, tv_ciudad, tv_pais;
+    LinearLayout ll_noeditable, ll_editable, ll_buttons;
+    EditText et_nombre, et_apellido, et_email, et_telefono, et_calle, et_numero, et_ciudad, et_pais;
+    TextView tv_legajo , tv_nombre, tv_apellido, tv_email, tv_telefono, tv_calle, tv_numero, tv_ciudad, tv_pais, et_legajo;
     String legajo , nombre, apellido, email, telefono, calle, numero, ciudad, pais, direccion;
     Employee empleado;
     double lat, lon;
     int id;
 
-    Button btn_edit, btn_delete, btn_back, btn_update, btn_call, btn_maps;
+    Button btn_edit, btn_delete, btn_back, btn_update, btn_call, btn_maps, btn_email, btn_cancel;
     private final int TEL_COD = 100;
     EmployeeDetailPresenter presenter;
     EmployeeDetailModel model;
@@ -72,6 +72,7 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
 
         ll_editable = findViewById(R.id.ll_editable);
         ll_noeditable = findViewById(R.id.ll_noeditable);
+        ll_buttons = findViewById(R.id.ll_buttons);
         btn_edit = findViewById(R.id.btn_edit);
         btn_delete = findViewById(R.id.btn_delete);
         btn_back = findViewById(R.id.btn_back);
@@ -98,6 +99,8 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         et_numero= findViewById(R.id.et_numero);
         et_ciudad= findViewById(R.id.et_ciudad);
         et_pais= findViewById(R.id.et_pais);
+        btn_email = findViewById(R.id.btn_email);
+        btn_cancel = findViewById(R.id.btn_cancel);
         fillViewDefault();
 
 
@@ -123,6 +126,15 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         }
     });
 
+        btn_update.setOnClickListener(view ->{
+            retrieveData();
+            editEmployeeDialog().show();
+        });
+
+        btn_cancel.setOnClickListener(view -> {
+
+        });
+
 
 
         btn_maps.setOnClickListener(view -> {
@@ -136,6 +148,18 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
 
         btn_delete.setOnClickListener(view -> {
             deleteEmployeeDialog().show();
+        });
+
+        btn_email.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + email));
+
+            // Verifica si hay una aplicación de correo electrónico disponible
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                Toast.makeText(EmployeeDetail.this, "No se encontró ninguna aplicación de correo electrónico", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -226,17 +250,40 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
     }
 
     @Override
+    public void retrieveData() {
+
+        legajo = et_legajo.getText().toString();
+        nombre = et_nombre.getText().toString();
+        apellido = et_apellido.getText().toString();
+        email= et_email.getText().toString();
+        telefono = et_telefono.getText().toString();
+        calle= et_calle.getText().toString();
+        numero= et_numero.getText().toString();
+        ciudad= et_ciudad.getText().toString();
+        pais = et_pais.getText().toString();
+        direccion = direccion(calle, numero, ciudad, pais);
+        presenter.obtenerCoordenadasDireccion(direccion, this);
+
+    }
+
+    @Override
     public String direccion(String calle, String altura, String ciudad, String pais) {
         StringBuilder sb = new StringBuilder();
         sb.append(calle);
-        sb.append(" , ");
-        sb.append(altura);
+        sb.append(" ");
+        sb.append(numero);
         sb.append(" , ");
         sb.append(ciudad);
         sb.append(" , ");
         sb.append(pais);
 
         return sb.toString();
+    }
+
+    @Override
+    public void setLatAndLon(double latitud, double longitud) {
+        lat = latitud;
+        lon = longitud;
     }
 
 
@@ -251,6 +298,22 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
                     Intent intent = new Intent(EmployeeDetail.this, EmployeesList.class);
                     startActivity(intent);
                     finish();
+                })
+                .setNegativeButton("No", (dialog, whichButton) -> {
+
+                })
+                .create();
+    }
+
+
+    private AlertDialog editEmployeeDialog()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("Confirmar acción")
+                .setMessage("¿Está seguro de que realizar estos cambios?")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+                    presenter.editEmployee(id, nombre, apellido, email, telefono, legajo, calle, numero, ciudad, pais, String.valueOf(lat), String.valueOf(lon) );
                 })
                 .setNegativeButton("No", (dialog, whichButton) -> {
 
