@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.model.RegisterUserModel;
 import com.example.gestionempresarial.mvp.view.IRegisterUserView;
-import com.example.gestionempresarial.presenters.LoginPresenter;
 import com.example.gestionempresarial.presenters.RegisterUserPresenter;
 
 public class RegisterUserActivity extends AppCompatActivity implements IRegisterUserView {
@@ -50,22 +48,6 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
                 }
             }
         });
-
-    }
-
-    @Override
-    public void showRegisterError(String mensaje) {
-
-    }
-
-    @Override
-    public void showSuccessRegister(String mensaje) {
-
-    }
-
-    @Override
-    public void showFormError() {
-
 
     }
 

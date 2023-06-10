@@ -3,8 +3,6 @@ package com.example.gestionempresarial.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,7 +15,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.model.EmployeeDetailModel;
 import com.example.gestionempresarial.mvp.view.IEmployeeDetailView;
@@ -235,22 +232,6 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         et_numero.setText(numero);
         et_ciudad.setText(ciudad);
         et_pais.setText(pais);
-    }
-
-    @Override
-    public void hideView() {
-
-
-    }
-
-    @Override
-    public void errorSaving() {
-
-    }
-
-    @Override
-    public void successSaving() {
-
     }
 
     @Override

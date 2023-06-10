@@ -7,7 +7,6 @@ import android.location.Geocoder;
 
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.mvp.models.IEmployeeDetailModel;
-import com.example.gestionempresarial.pojos.Employee;
 
 import java.io.IOException;
 import java.util.List;

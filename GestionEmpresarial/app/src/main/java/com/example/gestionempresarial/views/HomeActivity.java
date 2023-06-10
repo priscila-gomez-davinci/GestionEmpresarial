@@ -4,13 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.pojos.Auth;
-import com.example.gestionempresarial.pojos.Employee;
 
 public class HomeActivity extends AppCompatActivity {
 

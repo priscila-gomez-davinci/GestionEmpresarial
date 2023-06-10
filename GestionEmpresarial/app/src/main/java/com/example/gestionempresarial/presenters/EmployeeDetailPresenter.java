@@ -3,7 +3,6 @@ package com.example.gestionempresarial.presenters;
 import android.content.Context;
 
 import com.example.gestionempresarial.model.EmployeeDetailModel;
-import com.example.gestionempresarial.model.RegisterEmployeeModel;
 import com.example.gestionempresarial.mvp.models.IEmployeeDetailModel;
 import com.example.gestionempresarial.mvp.presenter.IEmployeeDetailPresenter;
 import com.example.gestionempresarial.mvp.view.IEmployeeDetailView;
@@ -16,12 +15,6 @@ public class EmployeeDetailPresenter implements IEmployeeDetailPresenter {
         this.view = view;
         this.model = model;
     }
-
-    @Override
-    public void loadEmployee() {
-
-    }
-
     @Override
     public void editEmployee(int id, String name, String lastname, String email, String telephone,
                              String filenumber, String street, String number,
@@ -29,11 +22,6 @@ public class EmployeeDetailPresenter implements IEmployeeDetailPresenter {
         model.updateEmployee(id, name, lastname, email, telephone,
                 filenumber, street, number,
                 city, country, lat, lon);
-
-    }
-
-    @Override
-    public void saveEmployee() {
 
     }
 

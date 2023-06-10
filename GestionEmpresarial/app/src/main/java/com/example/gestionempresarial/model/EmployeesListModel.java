@@ -1,10 +1,7 @@
 package com.example.gestionempresarial.model;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
-
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.mvp.models.IEmployeeListModel;
 import com.example.gestionempresarial.pojos.Employee;

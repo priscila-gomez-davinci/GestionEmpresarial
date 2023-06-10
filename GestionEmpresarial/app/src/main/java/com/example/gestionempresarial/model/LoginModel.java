@@ -4,11 +4,9 @@ import static com.example.gestionempresarial.utils.Constants.AUTH;
 import static com.example.gestionempresarial.utils.Constants.IS_ACTIVE;
 import static com.example.gestionempresarial.utils.Constants.PASSWORD;
 import static com.example.gestionempresarial.utils.Constants.USER;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.mvp.models.ILoginModel;
 import com.example.gestionempresarial.pojos.Auth;

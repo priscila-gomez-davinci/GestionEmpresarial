@@ -3,7 +3,6 @@ package com.example.gestionempresarial.mvp.models;
 import android.content.Context;
 
 import com.example.gestionempresarial.model.EmployeeDetailModel;
-import com.example.gestionempresarial.model.RegisterEmployeeModel;
 
 public interface IEmployeeDetailModel {
 

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.model.RegisterEmployeeModel;
 import com.example.gestionempresarial.mvp.view.IRegisterEmployeeView;
@@ -69,22 +68,6 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
         latitud = lat;
         longitud = lon;
     }
-
-    @Override
-    public void showRegisterError(String mensaje) {
-
-    }
-
-    @Override
-    public void showSuccessRegister(String mensaje) {
-
-    }
-
-    @Override
-    public void showFormError() {
-
-    }
-
     @Override
     public void obtenerDatos() {
         legajo = et_legajo.getText().toString();

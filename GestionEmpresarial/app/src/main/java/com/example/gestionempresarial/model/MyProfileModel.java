@@ -1,12 +1,8 @@
 package com.example.gestionempresarial.model;
 
-import static com.example.gestionempresarial.utils.Constants.AUTH;
-import static com.example.gestionempresarial.utils.Constants.USER;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.mvp.models.IMyProfileModel;
 import com.example.gestionempresarial.pojos.Auth;
@@ -24,7 +20,7 @@ public class MyProfileModel implements IMyProfileModel {
 
     @Override
     public void updateUser(int id, String nombre, String apellido, String usuario, String password) {
-        /**Aca llama al método que se encarga de hacer el pudate**/
+        /**Aca llama al método que se encarga de hacer el update**/
         String query = dbHelper.queryUpdateAuth(id, nombre, apellido, usuario,  password, "S");
         database.execSQL(query);
     }

@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.databases.DbCreator;
 import com.example.gestionempresarial.model.LoginModel;
 import com.example.gestionempresarial.mvp.view.ILoginView;
 import com.example.gestionempresarial.pojos.Auth;
-import com.example.gestionempresarial.pojos.Employee;
 import com.example.gestionempresarial.presenters.LoginPresenter;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
