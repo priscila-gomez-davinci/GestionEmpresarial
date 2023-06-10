@@ -3,6 +3,7 @@ package com.example.gestionempresarial.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -108,11 +109,11 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
             fillViewEditable();
             ll_noeditable.setVisibility(View.GONE);
             ll_editable.setVisibility(View.VISIBLE);
+            ll_buttons.setVisibility(View.GONE);
         });
 
         btn_back.setOnClickListener(view -> {
-            ll_noeditable.setVisibility(View.VISIBLE);
-            ll_editable.setVisibility(View.GONE);
+            finish();
         });
 
         btn_call.setOnClickListener(view -> {
@@ -132,7 +133,10 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         });
 
         btn_cancel.setOnClickListener(view -> {
-
+            fillViewDefault();
+            ll_noeditable.setVisibility(View.VISIBLE);
+            ll_editable.setVisibility(View.GONE);
+            ll_buttons.setVisibility(View.VISIBLE);
         });
 
 
