@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -17,8 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gestionempresarial.R;
+import com.example.gestionempresarial.model.EmployeeDetailModel;
 import com.example.gestionempresarial.mvp.view.IEmployeeDetailView;
 import com.example.gestionempresarial.pojos.Employee;
+import com.example.gestionempresarial.presenters.EmployeeDetailPresenter;
 
 public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetailView {
 
@@ -28,9 +31,12 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
     String legajo , nombre, apellido, email, telefono, calle, numero, ciudad, pais, direccion;
     Employee empleado;
     double lat, lon;
+    int id;
 
     Button btn_edit, btn_delete, btn_back, btn_update, btn_call, btn_maps;
     private final int TEL_COD = 100;
+    EmployeeDetailPresenter presenter;
+    EmployeeDetailModel model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +53,21 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         numero= empleado.getNumber();
         ciudad= empleado.getCity();
         pais = empleado.getCountry();
+        id = empleado.getId();
         direccion = direccion(calle, numero, ciudad, pais);
-        lat = Double.parseDouble(empleado.getLat());
-        lon = Double.parseDouble(empleado.getLon());
+
+        model = new EmployeeDetailModel(this);
+        presenter = new EmployeeDetailPresenter(this, model);
+
+        /**Validamos que no sea null, si uno es  o no son doubles, el empleado vive en el obelisco **/
+        try {
+            lat = Double.parseDouble(empleado.getLat());
+            lon = Double.parseDouble(empleado.getLon());
+        } catch (NumberFormatException e) {
+            lat = -34.605425;
+            lon = -58.381555;
+        }
+
 
 
         ll_editable = findViewById(R.id.ll_editable);
@@ -83,21 +101,15 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         fillViewDefault();
 
 
-        btn_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fillViewEditable();
-                ll_noeditable.setVisibility(View.GONE);
-                ll_editable.setVisibility(View.VISIBLE);
-            }
+        btn_edit.setOnClickListener(view -> {
+            fillViewEditable();
+            ll_noeditable.setVisibility(View.GONE);
+            ll_editable.setVisibility(View.VISIBLE);
         });
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ll_noeditable.setVisibility(View.VISIBLE);
-                ll_editable.setVisibility(View.GONE);
-            }
+        btn_back.setOnClickListener(view -> {
+            ll_noeditable.setVisibility(View.VISIBLE);
+            ll_editable.setVisibility(View.GONE);
         });
 
         btn_call.setOnClickListener(view -> {
@@ -118,6 +130,12 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
             intent.putExtra("lat", lat);
             intent.putExtra("lon", lon);
             startActivity(intent);
+        });
+
+
+
+        btn_delete.setOnClickListener(view -> {
+            deleteEmployeeDialog().show();
         });
     }
 
@@ -219,5 +237,24 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         sb.append(pais);
 
         return sb.toString();
+    }
+
+
+    private AlertDialog deleteEmployeeDialog()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("Confirmar acción")
+                .setMessage("¿Está seguro de que desea eliminar este empleado?")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+                    presenter.deleteEmployee(id);
+                    Intent intent = new Intent(EmployeeDetail.this, EmployeesList.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("No", (dialog, whichButton) -> {
+
+                })
+                .create();
     }
 }

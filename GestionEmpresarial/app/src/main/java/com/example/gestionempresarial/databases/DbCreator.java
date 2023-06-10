@@ -42,13 +42,16 @@ public class DbCreator extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(queryToCreateEmployeesTable);
 
 
-        String employeeTest1 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
-        String employeeTest2 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
-        String employeeTest3 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "isActive",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
+        String employeeTest1 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "S",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
+        String employeeTest2 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "S",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
+        String employeeTest3 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "S",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
+        String employeeTest4 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "N",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
+
 
         sqLiteDatabase.execSQL(employeeTest1);
         sqLiteDatabase.execSQL(employeeTest2);
         sqLiteDatabase.execSQL(employeeTest3);
+        sqLiteDatabase.execSQL(employeeTest4);
 
 
         String user = queryInsertAuth("Prisci", "Gomez", "usuario", "pass", "N");
@@ -258,7 +261,7 @@ public class DbCreator extends SQLiteOpenHelper {
         return sb.toString();
     }
 
-    private String queryUpdateEmployee(int id, String name, String lastname, String email, String telephone, String filenumber, String isActive, String street, String number, String city, String country, String lat, String lon ){
+    public String queryUpdateEmployee(int id, String name, String lastname, String email, String telephone, String filenumber, String isActive, String street, String number, String city, String country, String lat, String lon ){
         StringBuilder sb = new StringBuilder();
         sb.append("UPDATE employees SET");
         sb.append("(");
@@ -332,7 +335,7 @@ public class DbCreator extends SQLiteOpenHelper {
         StringBuilder sb = new StringBuilder();
         sb.append("UPDATE auth SET ");
         sb.append("is_active = ");
-        sb.append("usre '");
+        sb.append("'");
         sb.append("N");
         sb.append("' ");
         sb.append("WHERE id = ");
@@ -341,18 +344,33 @@ public class DbCreator extends SQLiteOpenHelper {
         return sb.toString();
     }
 
-    private String queryDeleteEmployee(int id){
-        StringBuilder deleteQueryBuilder = new StringBuilder();
-        deleteQueryBuilder.append("DELETE FROM employees WHERE id = ");
-        deleteQueryBuilder.append(id);
-        deleteQueryBuilder.append(";");
-        return deleteQueryBuilder.toString();
+    public String queryDeleteEmployee(int id){
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE employees SET ");
+        sb.append("is_active = ");
+        sb.append(" '");
+        sb.append("N");
+        sb.append("' ");
+        sb.append("WHERE id = ");
+        sb.append(id);
+        sb.append(";");
+        return sb.toString();
 
     }
 
     /**Selects * from tables**/
     public List<Employee> getEmployees(){
-        String selectQuery = "SELECT  * FROM " + EMPLOYEES;
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT  * FROM ");
+        sb.append(EMPLOYEES);
+        sb.append(" WHERE ");
+        sb.append(IS_ACTIVE);
+        sb.append("=");
+        sb.append("'");
+        sb.append("S");
+        sb.append("'");
+
+        String selectQuery = sb.toString();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         List<Employee> employeesList = new ArrayList<Employee>();

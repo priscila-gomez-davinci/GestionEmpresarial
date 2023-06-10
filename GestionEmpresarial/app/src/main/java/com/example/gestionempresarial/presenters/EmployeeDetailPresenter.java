@@ -28,7 +28,8 @@ public class EmployeeDetailPresenter implements IEmployeeDetailPresenter {
     }
 
     @Override
-    public void deleteEmployee() {
-
+    public void deleteEmployee(int id) {
+        model.deleteEmployee(id);
     }
+
 }
