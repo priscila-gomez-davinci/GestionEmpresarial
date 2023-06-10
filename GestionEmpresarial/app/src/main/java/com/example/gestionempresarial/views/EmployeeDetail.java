@@ -234,6 +234,13 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         et_pais.setText(pais);
     }
 
+    private void fillNewData(){
+        fillViewDefault();
+        ll_noeditable.setVisibility(View.VISIBLE);
+        ll_editable.setVisibility(View.GONE);
+        ll_buttons.setVisibility(View.VISIBLE);
+
+    }
     @Override
     public void retrieveData() {
 
@@ -299,6 +306,7 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
 
                 .setPositiveButton("Ok", (dialog, whichButton) -> {
                     presenter.editEmployee(id, nombre, apellido, email, telefono, legajo, calle, numero, ciudad, pais, String.valueOf(lat), String.valueOf(lon) );
+                    fillNewData();
                 })
                 .setNegativeButton("No", (dialog, whichButton) -> {
 
