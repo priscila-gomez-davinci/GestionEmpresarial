@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -114,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/padding_20"
-                android:hint="@string/calle"/>>
+                android:hint="@string/calle"/>
         </LinearLayout>
 
         <LinearLayout
@@ -167,6 +168,18 @@
                 android:textSize="@dimen/padding_20"
                 android:hint="@string/pa_s"/>
         </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -255,7 +268,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/padding_20"
-            android:hint="@string/email"/>>
+            android:hint="@string/email"/>
         </LinearLayout>
 
 
@@ -291,7 +304,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/padding_20"
-                android:hint="@string/calle"/>>
+                android:hint="@string/calle"/>
         </LinearLayout>
 
         <LinearLayout

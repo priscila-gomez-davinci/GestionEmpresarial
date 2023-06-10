@@ -86,8 +86,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     private AlertDialog errorLoginDialog()
     {
         return new AlertDialog.Builder(this)
-                .setTitle("No se encontró usuario")
-                .setMessage("Por favor reingrese las credenciales")
+                .setTitle("Revise las credenciales ingresadas")
+                .setMessage("Por favor ingrese las credenciales nuevamente")
 
                 .setPositiveButton("Ok", (dialog, whichButton) -> {
 

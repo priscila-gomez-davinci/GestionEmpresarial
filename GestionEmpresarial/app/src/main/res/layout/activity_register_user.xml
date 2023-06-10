@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.RegisterUserActivity">
 
     <LinearLayout
@@ -12,27 +13,53 @@
         android:orientation="vertical"
         android:layout_gravity="center_vertical">
 
-        <EditText
-            android:id="@+id/et_nombre"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre"/>
-        <EditText
-            android:id="@+id/et_apellido"
+            app:hintTextAppearance="@style/MyEditTextHintStyle"
+            app:boxBackgroundColor="@android:color/transparent" >
+            <EditText
+                android:id="@+id/et_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Apellido"/>
-        <EditText
-            android:id="@+id/et_usuario"
+            app:hintTextAppearance="@style/MyEditTextHintStyle"
+            app:boxBackgroundColor="@android:color/transparent">
+            <EditText
+                android:id="@+id/et_apellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellido"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Usuario"/>
-        <EditText
-            android:id="@+id/et_password"
+            app:hintTextAppearance="@style/MyEditTextHintStyle"
+            app:boxBackgroundColor="@android:color/transparent" >
+            <EditText
+                android:id="@+id/et_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Contraseña"/>
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/negro"
+            app:hintTextAppearance="@style/MyEditTextHintStyle"
+            app:boxBackgroundColor="@android:color/transparent" >
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Contraseña"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register"
