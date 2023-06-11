@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.gestionempresarial.R;
@@ -51,10 +53,14 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
                 presenter.obtenerCoordenadasDireccion(direccion, getApplicationContext());
                 lat = String.valueOf(latitud);
                 lon = String.valueOf(longitud);
-                presenter.saveEmployee(nombre , apellido, email,  telefono, legajo,
-                        calle , numero , ciudad , pais, lat,  lon);
 
-                finish();
+                if(validateForm()){
+                    presenter.saveEmployee(nombre , apellido, email,  telefono, legajo,
+                            calle , numero , ciudad , pais, lat,  lon);
+                    successDialog().show();
+                }else{
+                    saveDialog().show();
+                }
             }
         });
 
@@ -91,6 +97,76 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
 
     }
 
+    @Override
+    public boolean validateForm() {
+
+        if (et_legajo.length() == 0) {
+            et_legajo.setError("Este campo es obligatorio");
+            return false;
+        } else if (!TextUtils.isDigitsOnly(legajo)) {
+            et_legajo.setError("Ingresa solo números");
+            return false;
+        }
+        if (et_nombre.length() == 0) {
+            et_nombre.setError("Este campo es obligatorio");
+            return false;
+        } else if (!nombre.matches("^[a-zA-Z\\s]+$")) {
+            et_nombre.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_apellido.length() == 0) {
+            et_apellido.setError("Este campo es obligatorio");
+            return false;
+        } else if (!apellido.matches("^[a-zA-Z\\s]+$")) {
+            et_apellido.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_email.length() == 0) {
+            et_email.setError("Este campo es obligatorio");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            et_email.setError("Ingresa una dirección de correo electrónico válida");
+            return false;
+        }
+        if (et_telefono.length() == 0) {
+            et_telefono.setError("Este campo es obligatorio");
+            return false;
+        } else if (!TextUtils.isDigitsOnly(telefono)) {
+            et_telefono.setError("Ingresa solo números");
+            return false;
+        }
+        if (et_calle.length() == 0) {
+            et_calle.setError("Este campo es obligatorio");
+            return false;
+        } else if (!calle.matches("^[a-zA-Z\\s]+$")) {
+            et_calle.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_numero.length() == 0) {
+            et_numero.setError("Este campo es obligatorio");
+            return false;
+        } else if (!TextUtils.isDigitsOnly(numero)) {
+            et_numero.setError("Ingresa solo números");
+            return false;
+        }
+        if (et_ciudad.length() == 0) {
+            et_ciudad.setError("Este campo es obligatorio");
+            return false;
+        } else if (!ciudad.matches("^[a-zA-Z\\s]+$")) {
+            et_ciudad.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_pais.length() == 0) {
+            et_pais.setError("Este campo es obligatorio");
+            return false;
+        } else if (!pais.matches("^[a-zA-Z\\s]+$")) {
+            et_pais.setError("Ingresa solo texto");
+            return false;
+        }
+
+        return true;
+    }
+
     private AlertDialog errorDialog()
     {
         return new AlertDialog.Builder(this)
@@ -99,6 +175,29 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
 
                 .setPositiveButton("Ok", (dialog, whichButton) -> {
 
+                })
+                .create();
+    }
+    private AlertDialog saveDialog()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("Error en el formulario")
+                .setMessage("Por favor revise los datos ingresados")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+
+                })
+                .create();
+    }
+
+    private AlertDialog successDialog()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("Usuario guardado")
+                .setMessage("Será redirigido al menú principal")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+                    finish();
                 })
                 .create();
     }
