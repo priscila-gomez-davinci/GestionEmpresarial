@@ -39,7 +39,7 @@ public class EmployeesList extends AppCompatActivity implements IEmployeesListVi
         presenter = new EmployeesListPresenter(this, model);
 
         presenter.loadEmployees();
-        if (employees == null || employees.size() == 0) {
+        if (employees == null || employees.isEmpty()) {
             noEmployees.setVisibility(View.VISIBLE);
             lv_employees.setVisibility(View.GONE);
         }else{

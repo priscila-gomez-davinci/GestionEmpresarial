@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.gestionempresarial.R;
 import com.example.gestionempresarial.model.MyProfileModel;
 import com.example.gestionempresarial.mvp.view.IMyProfileView;
@@ -121,6 +123,25 @@ public class MyProfile extends AppCompatActivity implements IMyProfileView {
 
     }
 
+    @Override
+    public boolean validateForm() {
+        if (et_nombre.length() == 0) {
+            et_nombre.setError("Campo requerido");
+            return false;
+        }
+
+        if (et_apellido.length() == 0) {
+            et_apellido.setError("Campo requerido");
+            return false;
+        }
+
+        if (et_password.length() == 0) {
+            et_password.setError("Campo requerido");
+            return false;
+        }
+        return true;
+    }
+
     private AlertDialog deleteUserDialog()
     {
         return new AlertDialog.Builder(this)
@@ -144,16 +165,18 @@ public class MyProfile extends AppCompatActivity implements IMyProfileView {
                 .setMessage("¿Confirma el guardado de los nuevos datos para este usuario?")
 
                 .setPositiveButton("Ok", (dialog, whichButton) -> {
-                    presenter.editUser(id,
-                            et_nombre.getText().toString(),
-                            et_apellido.getText().toString(),
-                            et_usuario.getText().toString(),
-                            et_password.getText().toString());
-                    setNewUser();
-                })
-                .setNegativeButton("No", (dialog, whichButton) -> {
+                    if(validateForm()){
+                        presenter.editUser(id,
+                                et_nombre.getText().toString(),
+                                et_apellido.getText().toString(),
+                                et_usuario.getText().toString(),
+                                et_password.getText().toString());
+                        setNewUser();
+                    }
 
                 })
+                .setNegativeButton("No", (dialog, whichButton) -> Toast.makeText(MyProfile.this, "Por favor complete todos los campos", Toast.LENGTH_LONG).show())
                 .create();
     }
+
 }

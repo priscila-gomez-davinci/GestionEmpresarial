@@ -5,4 +5,6 @@ public interface IMyProfileView {
     void setNotEditable();
     void setNewUser();
 
+    boolean validateForm();
+
 }
