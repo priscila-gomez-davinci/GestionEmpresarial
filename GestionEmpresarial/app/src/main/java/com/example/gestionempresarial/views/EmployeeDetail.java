@@ -152,15 +152,9 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         });
 
         btn_email.setOnClickListener(view -> {
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:" + email));
-
-            // Verifica si hay una aplicación de correo electrónico disponible
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(EmployeeDetail.this, "No se encontró ninguna aplicación de correo electrónico", Toast.LENGTH_SHORT).show();
-            }
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",email, null));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Gestion Empresarial - ");
+            startActivity(Intent.createChooser(emailIntent,  "Enviar email "));
         });
     }
 

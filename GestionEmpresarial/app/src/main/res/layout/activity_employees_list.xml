@@ -5,11 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.EmployeesList">
+    tools:context=".views.EmployeesList"
+    android:orientation="vertical">
 
 <ListView
     android:id="@+id/lv_employees"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
+    <LinearLayout
+        android:id="@+id/noEmployees"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="No hay empleados registrados"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30dp"/>
+    </LinearLayout>
 
 </LinearLayout>

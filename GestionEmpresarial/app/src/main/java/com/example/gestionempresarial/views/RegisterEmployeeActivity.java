@@ -3,7 +3,6 @@ package com.example.gestionempresarial.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,8 +54,7 @@ public class RegisterEmployeeActivity extends AppCompatActivity implements IRegi
                 presenter.saveEmployee(nombre , apellido, email,  telefono, legajo,
                         calle , numero , ciudad , pais, lat,  lon);
 
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
