@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -272,6 +274,76 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
         lon = longitud;
     }
 
+    @Override
+    public boolean validateForm() {
+
+        if (et_legajo.length() == 0) {
+            et_legajo.setError("Este campo es obligatorio");
+            return false;
+        } else if (!TextUtils.isDigitsOnly(legajo)) {
+            et_legajo.setError("Ingresa solo números");
+            return false;
+        }
+        if (et_nombre.length() == 0) {
+            et_nombre.setError("Este campo es obligatorio");
+            return false;
+        } else if (!nombre.matches("^[a-zA-Z\\s]+$")) {
+            et_nombre.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_apellido.length() == 0) {
+            et_apellido.setError("Este campo es obligatorio");
+            return false;
+        } else if (!apellido.matches("^[a-zA-Z\\s]+$")) {
+            et_apellido.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_email.length() == 0) {
+            et_email.setError("Este campo es obligatorio");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            et_email.setError("Ingresa una dirección de correo electrónico válida");
+            return false;
+        }
+        if (et_telefono.length() == 0) {
+            et_telefono.setError("Este campo es obligatorio");
+            return false;
+        } else if (!TextUtils.isDigitsOnly(telefono)) {
+            et_telefono.setError("Ingresa solo números");
+            return false;
+        }
+        if (et_calle.length() == 0) {
+            et_calle.setError("Este campo es obligatorio");
+            return false;
+        } else if (!calle.matches("^[a-zA-Z\\s]+$")) {
+            et_calle.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_numero.length() == 0) {
+            et_numero.setError("Este campo es obligatorio");
+            return false;
+        } else if (!TextUtils.isDigitsOnly(numero)) {
+            et_numero.setError("Ingresa solo números");
+            return false;
+        }
+        if (et_ciudad.length() == 0) {
+            et_ciudad.setError("Este campo es obligatorio");
+            return false;
+        } else if (!ciudad.matches("^[a-zA-Z\\s]+$")) {
+            et_ciudad.setError("Ingresa solo texto");
+            return false;
+        }
+        if (et_pais.length() == 0) {
+            et_pais.setError("Este campo es obligatorio");
+            return false;
+        } else if (!pais.matches("^[a-zA-Z\\s]+$")) {
+            et_pais.setError("Ingresa solo texto");
+            return false;
+        }
+
+        return true;
+    }
+
 
     private AlertDialog deleteEmployeeDialog()
     {
@@ -299,10 +371,28 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
                 .setMessage("¿Está seguro de que realizar estos cambios?")
 
                 .setPositiveButton("Ok", (dialog, whichButton) -> {
-                    presenter.editEmployee(id, nombre, apellido, email, telefono, legajo, calle, numero, ciudad, pais, String.valueOf(lat), String.valueOf(lon) );
-                    fillNewData();
+                    if(validateForm()){
+                        presenter.editEmployee(id, nombre, apellido, email, telefono, legajo, calle, numero, ciudad, pais, String.valueOf(lat), String.valueOf(lon) );
+                        fillNewData();
+                    }else{
+                        formErrorDialog().show();
+                    }
+
                 })
                 .setNegativeButton("No", (dialog, whichButton) -> {
+
+                })
+                .create();
+    }
+
+    private AlertDialog formErrorDialog()
+    {
+        return new AlertDialog.Builder(this)
+                .setTitle("Error en el formulario")
+                .setMessage("Por favor revise los datos ingresados")
+
+                .setPositiveButton("Ok", (dialog, whichButton) -> {
+
 
                 })
                 .create();

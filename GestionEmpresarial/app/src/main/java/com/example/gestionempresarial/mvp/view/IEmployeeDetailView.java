@@ -9,4 +9,6 @@ public interface IEmployeeDetailView {
     String direccion(String calle, String altura, String ciudad, String pais);
 
     void setLatAndLon(double latitud, double longitud);
+
+    boolean validateForm();
 }
