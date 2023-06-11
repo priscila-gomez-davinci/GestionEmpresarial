@@ -27,26 +27,26 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="@dimen/padding_20"
-            android:hint="Usuario"/>
+            android:hint="@string/usuario"/>
         <TextView
             android:id="@+id/tv_nombre"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="@dimen/padding_20"
-            android:hint="Nombre"/>
+            android:hint="@string/nombre"/>
         <TextView
             android:id="@+id/tv_apellido"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="@dimen/padding_20"
-            android:hint="Apellido"/>
+            android:hint="@string/apellido"/>
         <TextView
             android:id="@+id/tv_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="@dimen/padding_20"
             android:inputType="textPassword"
-            android:hint="Contraseña"/>
+            android:hint="@string/password"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_editable"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textSize="@dimen/padding_20"
-                android:hint="Usuario"/>
+                android:hint="@string/usuario"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textSize="@dimen/padding_20"
-                android:hint="Nombre"/>
+                android:hint="@string/nombre"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textSize="@dimen/padding_20"
-                android:hint="Apellido"/>
+                android:hint="@string/apellido"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                 android:layout_height="50dp"
                 android:textSize="@dimen/padding_20"
                 android:inputType="textPassword"
-                android:hint="Contraseña"/>
+                android:hint="@string/password"/>
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
             android:id="@+id/save_cancel_buttons"

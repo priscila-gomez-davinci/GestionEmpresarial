@@ -15,26 +15,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="Mi perfil"/>
+            android:text="@string/mi_perfil"/>
         <Button
             android:id="@+id/btn_register_employee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="Registrar empleado"/>
+            android:text="@string/registrar_empleado"/>
         <Button
             android:id="@+id/btn_employees"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="Ver nómina"/>
+            android:text="@string/ver_nomina"/>
 
         <TextView
             android:id="@+id/btn_logout"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Desloguearse"/>
+            android:text="@string/desloguearse"/>
 
     </LinearLayout>
 

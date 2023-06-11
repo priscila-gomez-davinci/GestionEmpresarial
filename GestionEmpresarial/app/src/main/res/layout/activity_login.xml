@@ -27,7 +27,7 @@
                 android:id="@+id/user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usuario"/>
+                android:hint="@string/usuario"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Contraseña"/>
+                android:hint="@string/password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,13 +52,13 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"/>
+            android:text="@string/login"/>
         <TextView
             android:id="@+id/btn_register"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrate"/>
+            android:text="@string/registrate"/>
 
     </LinearLayout>
 

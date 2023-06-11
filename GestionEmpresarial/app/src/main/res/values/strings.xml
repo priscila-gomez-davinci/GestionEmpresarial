@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GestionEmpresarial</string>
+    <string name="app_name">Gestion Empresarial</string>
     <string name="numero_legajo">Numero legajo: </string>
     <string name="nombre">Nombre: </string>
     <string name="apellido">Apellido: </string>
@@ -20,4 +20,12 @@
     <string name="cancel">Cancelar</string>
     <string name="usuario">Usuario</string>
     <string name="enviar_mail">E-mail</string>
+    <string name="no_hay_empleados_registrados">No hay empleados registrados</string>
+    <string name="mi_perfil">Mi perfil</string>
+    <string name="registrar_empleado">Registrar empleado</string>
+    <string name="ver_nomina">Ver nómina</string>
+    <string name="desloguearse">Desloguearse</string>
+    <string name="password">Contraseña</string>
+    <string name="registrate">Registrate</string>
+    <string name="login">Login</string>
 </resources>

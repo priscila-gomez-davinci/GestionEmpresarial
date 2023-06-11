@@ -41,31 +41,12 @@ public class DbCreator extends SQLiteOpenHelper {
         String queryToCreateEmployeesTable = createTableEmployees();
         sqLiteDatabase.execSQL(queryToCreateEmployeesTable);
 
-
-        String employeeTest1 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "S",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
-        String employeeTest2 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "S",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
-        String employeeTest3 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "S",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
-        String employeeTest4 = queryInsertEmployee( "name",  "lastname",  "email", "telephone",  "filenumber", "N",  "yerbal", "3766",  "ciudad de buenos aires", "argentina",  "lat", "lon" );
-
-
-        sqLiteDatabase.execSQL(employeeTest1);
-        sqLiteDatabase.execSQL(employeeTest2);
-        sqLiteDatabase.execSQL(employeeTest3);
-        sqLiteDatabase.execSQL(employeeTest4);
-
-
-        String user = queryInsertAuth("Prisci", "Gomez", "usuario", "pass", "N");
-        sqLiteDatabase.execSQL(user);
-        String user2 = queryInsertAuth("Prisci", "Gomez", "user", "pass", "S");
-        sqLiteDatabase.execSQL(user2);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-
 
     /**Tables creation**/
     private String createTableEmployees(){
