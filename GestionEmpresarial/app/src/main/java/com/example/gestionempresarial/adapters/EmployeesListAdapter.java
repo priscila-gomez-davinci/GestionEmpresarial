@@ -1,5 +1,6 @@
 package com.example.gestionempresarial.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,6 +64,7 @@ public class EmployeesListAdapter extends BaseAdapter {
                 bundle.putSerializable("empleado", empleado);
                 intent.putExtras(bundle);
                 viewGroup.getContext().startActivity(intent);
+                ((Activity) viewGroup.getContext()).finish();
             });
         }
         return view;
