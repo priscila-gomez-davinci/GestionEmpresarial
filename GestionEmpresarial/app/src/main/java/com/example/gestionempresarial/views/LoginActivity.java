@@ -3,7 +3,9 @@ package com.example.gestionempresarial.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
@@ -18,6 +20,8 @@ import com.example.gestionempresarial.presenters.LoginPresenter;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
 
+    private static final String PREF_FIRST_RUN = "pref_first_run";
+
     public String user;
     public String password;
     LoginPresenter presenter = null;
@@ -29,6 +33,15 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        boolean isFirstRun = isFirstRun();
+
+        if (isFirstRun) {
+            showDialog();
+
+            markAppAsExecuted();
+        }
+
 
         EditText et_user= findViewById(R.id.user);
         EditText et_pass= findViewById(R.id.password);
@@ -91,5 +104,32 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
                 })
                 .create();
+    }
+
+    private boolean isFirstRun() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return sharedPreferences.getBoolean(PREF_FIRST_RUN, true);
+    }
+
+    private void markAppAsExecuted() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(PREF_FIRST_RUN, false);
+        editor.apply();
+    }
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Atención");
+        builder.setMessage("Por seguridad, cada vez que ingrese a la aplicación, se le pedirán las credenciales.");
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setCancelable(false);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
