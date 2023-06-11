@@ -57,6 +57,9 @@ public class EmployeesListAdapter extends BaseAdapter {
                 nombre = view.findViewById(R.id.nombre);
                 apellido = view.findViewById(R.id.apellido);
 
+                nombre.setText(empleados.get(i).getName());
+                apellido.setText(empleados.get(i).getLastname());
+
             view.setOnClickListener(view1 -> {
                 Intent intent = new Intent(viewGroup.getContext(), EmployeeDetail.class);
                 Bundle bundle = new Bundle();

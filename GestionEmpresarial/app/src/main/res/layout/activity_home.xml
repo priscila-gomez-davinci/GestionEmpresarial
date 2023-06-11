@@ -14,16 +14,19 @@
             android:id="@+id/btn_myprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Mi perfil"/>
         <Button
             android:id="@+id/btn_register_employee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Registrar empleado"/>
         <Button
             android:id="@+id/btn_employees"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Ver nómina"/>
 
         <TextView
