@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,25 +27,25 @@
         <TextView
             android:id="@+id/tv_usuario"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:textSize="@dimen/padding_20"
             android:hint="@string/usuario"/>
         <TextView
             android:id="@+id/tv_nombre"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:textSize="@dimen/padding_20"
             android:hint="@string/nombre"/>
         <TextView
             android:id="@+id/tv_apellido"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:textSize="@dimen/padding_20"
             android:hint="@string/apellido"/>
         <TextView
             android:id="@+id/tv_password"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:textSize="@dimen/padding_20"
             android:inputType="textPassword"
             android:hint="@string/password"/>
@@ -58,10 +60,7 @@
         android:paddingRight="@dimen/padding_20"
         android:gravity="center"
         android:paddingTop="100dp"
-        android:paddingBottom="@dimen/padding_20"
-        >
-
-
+        android:paddingBottom="@dimen/padding_20">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +80,7 @@
             <EditText
                 android:id="@+id/et_nombre"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:textSize="@dimen/padding_20"
                 android:hint="@string/nombre"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +93,7 @@
             <EditText
                 android:id="@+id/et_apellido"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:textSize="@dimen/padding_20"
                 android:hint="@string/apellido"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -108,7 +107,7 @@
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:textSize="@dimen/padding_20"
                 android:inputType="textPassword"
                 android:hint="@string/password"/>
@@ -126,12 +125,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
+                android:padding="@dimen/padding_xxl"
+                android:layout_margin="@dimen/padding_xxl"
                 android:textColor="@color/blanco"/>
             <Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel"
+                android:padding="@dimen/padding_xxl"
+                android:layout_margin="@dimen/padding_xxl"
                 android:textColor="@color/blanco"/>
 
         </LinearLayout>
@@ -155,18 +158,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/edit"
+                android:padding="@dimen/padding_xxl"
+                android:layout_margin="@dimen/padding_xxl"
                 android:textColor="@color/blanco"/>
             <Button
                 android:id="@+id/btn_eliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/delete"
+                android:padding="@dimen/padding_xxl"
+                android:layout_margin="@dimen/padding_xxl"
                 android:textColor="@color/blanco"/>
             <Button
                 android:id="@+id/btn_salir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/back"
+                android:padding="@dimen/padding_xxl"
+                android:layout_margin="@dimen/padding_xxl"
                 android:textColor="@color/blanco"/>
         </LinearLayout>
     </LinearLayout>
