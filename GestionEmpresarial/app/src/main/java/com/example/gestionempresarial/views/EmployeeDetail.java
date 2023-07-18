@@ -144,6 +144,8 @@ public class EmployeeDetail extends AppCompatActivity implements IEmployeeDetail
             Intent intent = new Intent(EmployeeDetail.this , MapsActivity.class);
             intent.putExtra("lat", lat);
             intent.putExtra("lon", lon);
+            intent.putExtra("name", nombre);
+            intent.putExtra("lastname", apellido);
             startActivity(intent);
         });
 

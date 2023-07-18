@@ -12,9 +12,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
-
-
 double lon, lat;
+String name, lastname;
 GoogleMap map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +22,9 @@ GoogleMap map;
 
         lat =  getIntent().getExtras().getDouble("lat");
         lon =  getIntent().getExtras().getDouble("lon");
+        name =  getIntent().getExtras().getString("name");
+        lastname =  getIntent().getExtras().getString("lastname");
+
 
         SupportMapFragment mf = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mf.getMapAsync(this);
@@ -35,9 +37,9 @@ GoogleMap map;
         map.setOnMapLongClickListener(this);
 
         LatLng ubicacion = new LatLng(lat,lon);
-        map.addMarker(new MarkerOptions().position(ubicacion).title("Domicilio del empleado"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
-
+        float zoomLevel = 15.0f;
+        map.addMarker(new MarkerOptions().position(ubicacion).title("Domicilio registrado de " + name + " " + lastname));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, zoomLevel));
     }
 
     @Override
